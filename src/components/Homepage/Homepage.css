@@ -1,0 +1,9 @@
+.imgback{
+    background-image: url('./assets/img.webp');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex; /* Utilizziamo flexbox per estendere l'immagine */
+    justify-content: center; /* Centra l'immagine verticalmente */
+    align-items: center; /* Centra l'immagine orizzontalmente */
+}
