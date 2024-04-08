@@ -12,6 +12,7 @@ import Createlocation from './components/Locations/Createlocation';
 import LocationDetails from './components/Locations/LocationDetails';
 import EventsOrganizer from './components/Events/EventsOrganizer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import EventUser from './components/Events/EventsUser';
 
 
 
@@ -28,7 +29,7 @@ function App() {
         }>
         </Route>
         <Route path="/Events" element={
-          <EventsOrganizer/>
+          <EventUser/>
         }></Route>
         <Route path="/MyLocations" element={
           <Mylocations/>

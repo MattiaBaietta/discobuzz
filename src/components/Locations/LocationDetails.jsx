@@ -50,6 +50,7 @@ const [events, setEvents] = useState(null);
       setLocation(data);
     });
     setIsEventSaved(false);
+    console.log("event saved?"+isEventSaved)
   }, [id, isEventSaved]);
 
   const handleEventSaved = () => {

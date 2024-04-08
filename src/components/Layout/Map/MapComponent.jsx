@@ -5,6 +5,8 @@ import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { SearchLocation } from './SearchLocation';
 import { OpenStreetMapProvider } from "leaflet-geosearch";
+import { useDispatch } from "react-redux";
+import { geoLocation } from '../../../redux/store';
 
 
 
@@ -15,7 +17,7 @@ export const customIcon = new L.Icon({
 });
 
 function MapComponent({ initialLatitude, initialLongitude, locations,isEventSaved}) {
-
+  const dispatch=useDispatch();
   const mapElement = useRef(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -35,6 +37,7 @@ function MapComponent({ initialLatitude, initialLongitude, locations,isEventSave
             position => {
               setLatitude(position.coords.latitude);
               setLongitude(position.coords.longitude);
+              dispatch(geoLocation({x:position.coords.latitude,y:position.coords.longitude}));
               setError(null);
             },
             error => {

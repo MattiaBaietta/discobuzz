@@ -20,7 +20,7 @@ function CreateEvent(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     RegisterEvent(formData);
-    props.onEventSaved();
+    
     setFormData({
       IdLocation: props.idlocation,
       Nome: '',
@@ -29,6 +29,8 @@ function CreateEvent(props) {
       Prezzo: 0,
       BigliettiTotali: 0
     });
+    props.onEventSaved();
+    
     props.close();
   }
 

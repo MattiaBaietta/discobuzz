@@ -105,3 +105,34 @@ export async function RemoveEvent(id){
         console.error(`Errore durante la cancellazione dell'evento: ${error.message}`);
     }
 }
+
+export async function EventListByRange(props){
+    const text = {
+        range: props.range,
+        userLat: props.x,
+        userLon: props.y,
+    }
+
+    try {
+        console.log(text)
+        const response = await fetch(
+            'http://localhost:5279/api/ViewEvents',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(text),
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(response.status);
+        }
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error(`Errore durante l'aggiunta della location: ${error.message}`);
+
+    }
+}
