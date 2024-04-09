@@ -81,6 +81,7 @@ const [events, setEvents] = useState(null);
               id={location[0].id}
               onEventSaved={handleEventSaved}
             />
+            {console.log(location[0])}
           </div>
 
         </div>

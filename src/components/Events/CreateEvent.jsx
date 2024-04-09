@@ -11,7 +11,8 @@ function CreateEvent(props) {
     Descrizione: '',
     Data: '',
     Prezzo: 0,
-    BigliettiTotali: 0
+    BigliettiTotali: 0,
+    isActive: true
   });
 
   const handleChange = (e) => {
@@ -27,7 +28,8 @@ function CreateEvent(props) {
       Descrizione: '',
       Data: '',
       Prezzo: 0,
-      BigliettiTotali: 0
+      BigliettiTotali: 0,
+      
     });
     props.onEventSaved();
     

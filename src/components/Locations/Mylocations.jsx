@@ -17,7 +17,7 @@ export const customIcon = new L.Icon({
 
 const Mylocations = () => {
   const [show, setShow] = useState(false);
-
+  const [isLocationSaved, setIsLocationSaved] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const navigate = useNavigate();
@@ -28,17 +28,24 @@ const Mylocations = () => {
     OrganizerLocations(user).then((data) => {
       setLocations(data);
     });
-  }, []);
+    setIsLocationSaved(false);
+  }, [isLocationSaved]);
+  
+  
+
   const LocationDetails=(id)=>{
     navigate(`/LocationDetails/${id}`);
   }
-
+  const handleLocationSaved = () => {
+    setIsLocationSaved(true);
+     
+  };
   return (
     <div>
       <h1>Le mie locations</h1>
       <div>
         <Button onClick={handleShow}>Aggiungi Location</Button> 
-        <Createlocation show={show} close={handleClose}></Createlocation>
+        <Createlocation handleLocationSaved={handleLocationSaved} show={show} close={handleClose}></Createlocation>
       </div>
       {locations.map((location, index) => (
         <div key={index}>
@@ -48,6 +55,7 @@ const Mylocations = () => {
         </div>
       ))}
       <MapComponent locations={locations}>
+        {console.log(locations)}
         
       </MapComponent>
 

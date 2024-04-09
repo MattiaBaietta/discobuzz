@@ -35,9 +35,9 @@ function MapComponent({ initialLatitude, initialLongitude, locations,isEventSave
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             position => {
-              setLatitude(position.coords.latitude);
               setLongitude(position.coords.longitude);
-              dispatch(geoLocation({x:position.coords.latitude,y:position.coords.longitude}));
+              setLatitude(position.coords.latitude);
+              dispatch(geoLocation({x:position.coords.longitude,y:position.coords.latitude}));
               setError(null);
             },
             error => {
@@ -86,7 +86,7 @@ function MapComponent({ initialLatitude, initialLongitude, locations,isEventSave
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
         {locations && locations.map((location, index) => {
-           
+           {console.log(location)}
           return (
 
             <Marker key={index} position={[parseFloat(location.latitudine).toFixed(4), parseFloat(location.longitudine).toFixed(4)]} icon={customIcon}>

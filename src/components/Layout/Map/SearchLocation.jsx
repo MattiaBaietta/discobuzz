@@ -23,7 +23,7 @@ import { getCoordinates } from "../../../redux/store";
   function searchEventHandler(result) {
     console.log(result.location)
      dispatch(getCoordinates(result.location));
-    
+      
   }
 
   const map = useMap(props);

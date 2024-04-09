@@ -27,16 +27,19 @@ const Createlocation = (props) => {
 
             const formToSend = {
                 Nome: Nome,
-                Longitudine: location.x,
                 Latitudine: location.y,
+                Longitudine: location.x,
                 Indirizzo:location.label,
                 IdUtente: user,
             };
+            console.log(formToSend.Longitudine,formToSend.Latitudine,formToSend.Indirizzo,formToSend.Nome,formToSend.IdUtente)
             RegisterLocation(formToSend);
         } else {
             console.error('La posizione non è stata definita correttamente.');
             // Puoi gestire questo caso in modo appropriato, ad esempio mostrando un messaggio di errore all'utente
         }
+        props.handleLocationSaved()
+        setNome('');
         props.close();
     }   
 

@@ -9,6 +9,7 @@ export async function RegisterEvent(props) {
         Prezzo:props.Prezzo,
         IdLocation: props.IdLocation,
         BigliettiVenduti:0,
+        isActive:props.isActive,
     }
 
     try {
@@ -109,8 +110,8 @@ export async function RemoveEvent(id){
 export async function EventListByRange(props){
     const text = {
         range: props.range,
-        userLat: props.x,
-        userLon: props.y,
+        userLat: props.y,
+        userLon: props.x,
     }
 
     try {
@@ -130,7 +131,7 @@ export async function EventListByRange(props){
             throw new Error(response.status);
         }
         const data = await response.json();
-        console.log(data);
+        return data;
     } catch (error) {
         console.error(`Errore durante l'aggiunta della location: ${error.message}`);
 
