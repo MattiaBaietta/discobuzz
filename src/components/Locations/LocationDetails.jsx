@@ -1,5 +1,4 @@
 
-import { useLocation } from "react-router-dom"
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Location } from "./LocationsFunctions";
@@ -10,12 +9,13 @@ import UpdateEvent from "../Events/UpdateEvent";
 import DeleteEvent from "../Events/DeleteEvent";
 import { EventsListByLocation } from "../Events/EventsFunctions";
 import ModifyLocation from "./ModifyLocation";
-
+import { RemoveLocation } from "./LocationsFunctions";
+import {useNavigate} from "react-router-dom";
 
 
 const LocationDetails = () => {
 const {id}=useParams();
-
+const navigate=useNavigate();
 const [show, setShow] = useState(false);
 const [showupdate, setShowupdate] = useState(false);
 const [Showmodiy, setShowmodify] = useState(false);
@@ -26,7 +26,7 @@ const handleShow = () => setShow(true);
 const handleShowModify = () => setShowmodify(true);
 const handleCloseModify = () => setShowmodify(false);
 
-const handleShowUpdate = (event) => { // Funzione per gestire l'apertura della modale di aggiornamento con l'evento selezionato
+const handleShowUpdate = (event) => { 
   setSelectedEvent(event);
   setShowupdate(true);
 };
@@ -55,8 +55,13 @@ const [events, setEvents] = useState(null);
 
   const handleEventSaved = () => {
     setIsEventSaved(true);
-    
   };
+
+  const handleRemove = async () => {
+    await RemoveLocation(id);
+    navigate('/Mylocations');
+    setIsEventSaved(true);
+  }
 
   if (location === null) {
     return <div>Loading...</div>;
@@ -70,6 +75,7 @@ const [events, setEvents] = useState(null);
             <label>Nome: {location[0].nome}</label>
             <label>Indirizzo: {location[0].indirizzo}</label>
             <Button  onClick={handleShowModify}>Modifica</Button>
+            <Button onClick={handleRemove}>Elimina location</Button>
             <ModifyLocation 
               show={Showmodiy} 
               close={handleCloseModify} 

@@ -82,7 +82,26 @@ export async function Location(id){
 }   
 
 export async function RemoveLocation(id){
-
+    try {
+        const response = await fetch(
+            `http://localhost:5279/api/Location/${id}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                
+            }
+        );
+        if (!response.ok) {
+            throw new Error(response.status);
+        }
+        const data = await response.json();
+        return data.message   
+    }
+    catch(error){
+        console.error(`Errore durante l'eliminazione della location: ${error.message}`);
+    }
 }
 
 export async function UpdateLocation(props){

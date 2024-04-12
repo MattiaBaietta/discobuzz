@@ -115,7 +115,6 @@ export async function EventListByRange(props){
     }
 
     try {
-        console.log(text)
         const response = await fetch(
             'http://localhost:5279/api/ViewEvents',
             {
@@ -136,4 +135,77 @@ export async function EventListByRange(props){
         console.error(`Errore durante l'aggiunta della location: ${error.message}`);
 
     }
+}
+
+export async function EventList(id){
+    try {
+        const response = await fetch(
+            `http://localhost:5279/api/Events/${id}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                
+            }
+        );
+        if (!response.ok) {
+            throw new Error(response.status);
+        }
+        const data = await response.json();
+        console.log(data)
+        return data   
+    }
+    catch(error){
+        console.error(`Errore durante il recupero delle location: ${error.message}`);
+    }
+}
+
+export async function EventListByOrganizer(id){
+    try {
+        const response = await fetch(
+            `http://localhost:5279/api/EventsByOrganizer/${id}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                
+            }
+        );
+        if (!response.ok) {
+            throw new Error(response.status);
+        }
+        const data = await response.json();
+        console.log(data)
+        return data   
+    }
+    catch(error){
+        console.error(`Errore durante il recupero delle location: ${error.message}`);
+    }
+}
+
+export async function EventListByUser(id){
+    try {
+        const response = await fetch(
+            `http://localhost:5279/api/EventsByUser/${id}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                
+            }
+        );
+        if (!response.ok) {
+            throw new Error(response.status);
+        }
+        const data = await response.json();
+        console.log(data)
+        return data   
+    }
+    catch(error){
+        console.error(`Errore durante il recupero degli eventi utente: ${error.message}`);
+    }
+
 }

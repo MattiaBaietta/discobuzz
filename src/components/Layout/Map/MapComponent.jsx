@@ -86,7 +86,7 @@ function MapComponent({ initialLatitude, initialLongitude, locations,isEventSave
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
         {locations && locations.map((location, index) => {
-           {console.log(location)}
+           
           return (
 
             <Marker key={index} position={[parseFloat(location.latitudine).toFixed(4), parseFloat(location.longitudine).toFixed(4)]} icon={customIcon}>

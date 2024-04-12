@@ -7,3 +7,19 @@
     justify-content: center; /* Centra l'immagine verticalmente */
     align-items: center; /* Centra l'immagine orizzontalmente */
 }
+
+
+.homepage{
+    font-size: 7em;
+    font-weight: bolder;
+    text-shadow: #d5c28f 2px 2px 20px;
+}
+.homepage span{
+    color: #d5c28f;
+    
+}
+
+.coloretext{
+    color: #d5c28f;
+    font-size: 2em;
+}
