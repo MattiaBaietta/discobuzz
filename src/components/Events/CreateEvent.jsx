@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { RegisterEvent } from './EventsFunctions';
+import "../Locations/Createlocation.css"
 
 function CreateEvent(props) {
   const [formData, setFormData] = useState({
@@ -11,7 +12,8 @@ function CreateEvent(props) {
     Data: '',
     Prezzo: 0,
     BigliettiTotali: 0,
-    isActive: true
+    isActive: true,
+    Immagine: '',
   });
 
   const handleChange = (e) => {
@@ -20,7 +22,7 @@ function CreateEvent(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       await RegisterEvent(formData);
       setFormData({
@@ -30,6 +32,7 @@ function CreateEvent(props) {
         Data: '',
         Prezzo: 0,
         BigliettiTotali: 0,
+        Immagine: '',
       });
       props.onEventSaved();
       props.close();
@@ -41,30 +44,44 @@ function CreateEvent(props) {
 
   return (
     <>
-      <Modal show={props.show} onHide={props.close}>
-        <Modal.Header closeButton>
-          <Modal.Title>Aggiungi nuovo evento</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form onSubmit={handleSubmit}>
-            <label>Nome Evento:</label>
-            <input type="text" name="Nome" value={formData.Nome} onChange={handleChange} required />
-            <label>Descrizione:</label>
-            <input type="text" name="Descrizione" value={formData.Descrizione} onChange={handleChange} required />
-            <label>Data:</label>
-            <input type="datetime-local" name="Data" value={formData.Data} onChange={handleChange} required />
-            <label>Prezzo</label>
-            <input type="number" name="Prezzo" value={formData.Prezzo} onChange={handleChange} required />
-            <label>Numero Biglietti:</label>
-            <input type="number" name="BigliettiTotali" value={formData.BigliettiTotali} onChange={handleChange} required />
-            <Button variant="primary" type="submit">Salva Evento</Button>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={props.close}>
-            Chiudi
-          </Button>
-        </Modal.Footer>
+      <Modal className='bgsfondo bgbottoni' show={props.show} onHide={props.close}>
+        <form onSubmit={handleSubmit}>
+          <Modal.Header className='bgmodal coloretext' closeButton>
+            <Modal.Title className='fs-3'>Aggiungi nuovo evento</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className='bgmodal  '>
+            <div className='coloretext d-flex  fs-5 text-center py-2  justify-content-between'>
+              <label className='w-50 fw-bold'>Nome Evento:</label>
+              <input type="text" className='inputtext rounded-3 w-50' name="Nome" value={formData.Nome} required onChange={handleChange} />
+            </div>
+            <div className='coloretext d-flex  fs-5 text-center py-2  justify-content-between'>
+              <label className='w-50 fw-bold'>Immagine evento:</label>
+              <input type="text" className='inputtext rounded-3 w-50' name="Immagine" value={formData.Url} required onChange={handleChange} />
+            </div>
+            <div className='coloretext d-flex  fs-5 text-center py-2  justify-content-between'>
+              <label className='w-50 fw-bold'>Descrizione:</label>
+              <input type="text" className='inputtext rounded-3 w-50' name="Descrizione" value={formData.Descrizione} required onChange={handleChange} />
+            </div>
+            <div className='coloretext d-flex  fs-5 text-center py-2  justify-content-between'>
+              <label className='w-50 fw-bold'>Data:</label>
+              <input type="datetime-local" className='inputtext rounded-3 w-50' name="Data" value={formData.Data} required onChange={handleChange} />
+            </div>
+            <div className='coloretext d-flex  fs-5 text-center py-2  justify-content-between'>
+              <label className='w-50 fw-bold'>Prezzo:</label>
+              <input type="number" className='inputtext rounded-3 w-50' name="Prezzo" value={formData.Prezzo} required onChange={handleChange} />
+            </div>
+            <div className='coloretext d-flex  fs-5 text-center py-2  justify-content-between'>
+              <label className='w-50 fw-bold'>Numero biglietti:</label>
+              <input type="number" className='inputtext rounded-3 w-50' name="BigliettiTotali" value={formData.BigliettiTotali} required onChange={handleChange} />
+            </div>
+          </Modal.Body>
+          <Modal.Footer className='bgmodal'>
+            <button className='btn' onClick={props.close}>
+              Chiudi
+            </button>
+            <button className='btn' type="submit">Salva Evento</button>
+          </Modal.Footer>
+        </form>
       </Modal>
     </>
   );

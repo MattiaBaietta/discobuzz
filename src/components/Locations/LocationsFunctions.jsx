@@ -1,12 +1,14 @@
 
 //aggiungi location
 export async function RegisterLocation(props) {
+    console.log(props)
     const text = {
         Nome: props.Nome,
         Longitudine: props.Longitudine,
         Latitudine: props.Latitudine,
         Indirizzo:props.Indirizzo,
-        IdUtente: props.IdUtente
+        IdUtente: props.IdUtente,
+        Immagine:props.Immagine
     }
 
     try {
@@ -105,12 +107,14 @@ export async function RemoveLocation(id){
 }
 
 export async function UpdateLocation(props){
+    console.log(props)
     const text = {
         Nome: props.Nome,
         Longitudine: props.Longitudine,
         Latitudine: props.Latitudine,
         Indirizzo:props.Indirizzo,
-        IdUtente: props.IdUtente
+        IdUtente: props.IdUtente,
+        Immagine:props.Immagine
     }
 
     try {

@@ -93,10 +93,10 @@ const MyNavbar = () => {
                     </Nav>
                     {isLoggedIn ? (
                         <>
-                            <Link className="nav-link coloretext me-2" to='/Cart'><FaCartShopping /></Link>
+                            <Link className="nav-link coloretext me-2" to='/Cart'><FaCartShopping style={{fontSize:"2em"}}/></Link>
                             <Dropdown >
                                 <Dropdown.Toggle className="bgcustom border-0  " id="dropdown-basic">
-                                <FaUser className="coloretext"/>
+                                <FaUser style={{fontSize:"2em"}} className="coloretext"/>
                                 </Dropdown.Toggle>
         
                                 <Dropdown.Menu  className='dropdown-menu-end'>

@@ -2,7 +2,7 @@
     background-image: url('./assets/img.webp');
     background-size: cover;
     background-position: center;
-    height: 80vh;
+    height: 90vh;
     display: flex; /* Utilizziamo flexbox per estendere l'immagine */
     justify-content: center; /* Centra l'immagine verticalmente */
     align-items: center; /* Centra l'immagine orizzontalmente */
@@ -19,7 +19,22 @@
     
 }
 
-.coloretext{
-    color: #d5c28f;
-    font-size: 2em;
+
+
+.eventi{
+    padding-bottom: 48px;
+    padding-top: 48px;
+    border-top: #d5c28f 2px solid;
+    border-bottom: #d5c28f 2px solid;
+}
+.eventi2{
+    padding-bottom: 48px;
+    padding-top: 48px;
+    border-bottom: #d5c28f 2px solid;
+    
+}
+
+.modal-open{
+    padding-right: 0px!important;   
+    overflow: auto!important;
 }

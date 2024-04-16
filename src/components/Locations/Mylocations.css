@@ -1,0 +1,27 @@
+.eventilocation{
+    border-bottom: #d5c28f 2px solid;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.bgbottoni button{
+    background-color: #d5c28f;
+}
+.bgbottoni button:hover{
+    background-color: #eee6d0;
+    color: black;
+}
+.addbutton{
+    font-size: 5em;
+    position: fixed;
+    right: 0px!important;
+    bottom: 0px;
+}
+.addbutton:hover{
+    color: #eee6d0;
+}
+
+.immagini{
+    width: 558px;
+    height: 350px;
+}

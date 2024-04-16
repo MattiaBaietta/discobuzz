@@ -5,11 +5,12 @@ import { OrganizerLocations } from './LocationsFunctions';
 import L from 'leaflet'; // Importa Leaflet
 import Button from 'react-bootstrap/Button';
 import { Marker, Popup } from 'react-leaflet';
+import './Mylocations.css'
 
 import { useSelector } from 'react-redux';
 import Createlocation from './Createlocation';
+import { CiCirclePlus } from "react-icons/ci";
 
-// Crea l'icona personalizzata
 export const customIcon = new L.Icon({
   iconUrl: 'https://maps.google.com/mapfiles/kml/paddle/red-blank.png',
   iconSize: [32, 32],
@@ -41,24 +42,30 @@ const Mylocations = () => {
      
   };
   return (
-    <div>
-      <h1>Le mie locations</h1>
-      <div>
-        <Button onClick={handleShow}>Aggiungi Location</Button> 
-        <Createlocation handleLocationSaved={handleLocationSaved} show={show} close={handleClose}></Createlocation>
-      </div>
-      {locations.map((location, index) => (
-        <div key={index}>
-          <label>Nome: {location.nome}</label>
-          <label>Indirizzo: {location.indirizzo}</label>
-          <button className="btn btn-primary" onClick={()=>LocationDetails(location.id)} >Visualizza Dettagli</button>
+    <div className='coloretext bgbottoni'>
+      <Createlocation handleLocationSaved={handleLocationSaved} show={show} close={handleClose}></Createlocation>
+      
+      <div className='start d-flex'>
+        <div className=''>
+          {locations.map((location, index) => (
+            <div key={index} className='eventilocation  d-flex'>
+              <img  className='w-50 immagini' src={location.immagine}></img>
+              <div className='w-50 d-flex flex-column justify-content-between align-items-center p-5'>
+                <div>
+                  <p style={{fontSize:"2em",fontWeight:"bold"}}>{location.nome}</p>
+                  <p>{location.indirizzo}</p>
+                </div>
+ 
+                <button className=" w-50 btn " onClick={()=>LocationDetails(location.id)} >Visualizza Dettagli</button>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-      <MapComponent locations={locations}>
-        {console.log(locations)}
+      </div>
+          
+        <CiCirclePlus className='addbutton' onClick={handleShow}>Aggiungi Location</CiCirclePlus>
         
-      </MapComponent>
-
+      
     </div>
   );
 };

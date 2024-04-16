@@ -10,6 +10,7 @@ export async function RegisterEvent(props) {
         IdLocation: props.IdLocation,
         BigliettiVenduti:0,
         isActive:props.isActive,
+        Immagine:props.Immagine,
     }
 
     try {
@@ -62,6 +63,7 @@ export async function ModifyEvent(props){
         Prezzo:props.Prezzo,
         IdLocation: props.IdLocation,
         BigliettiVenduti:0,
+        Immagine:props.Immagine,
     }
     try {
         const response = await fetch(

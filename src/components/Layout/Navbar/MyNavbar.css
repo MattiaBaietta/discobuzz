@@ -1,14 +1,17 @@
 .bgcustom{
     background:#2e2e2e;
+    border-bottom: #d5c28f 2px solid;
 }
 
 .coloretext a{
     color:#d5c28f!important;
+    
 }
 
 .coloretext
 {
     color:#d5c28f!important;
+    
 }
 
 .dropdown{

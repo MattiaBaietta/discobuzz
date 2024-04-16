@@ -1,0 +1,19 @@
+.locationdetails{
+    border-bottom: #d5c28f 2px solid;
+    padding-top: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+}
+
+.eventidet{
+    border-bottom: #d5c28f 2px solid;
+    border-top:#d5c28f 2px solid;
+    padding-bottom: 40px;
+    margin-top:40px;
+
+    
+}
+
+.eventicard{
+    border: #d5c28f 2px solid;;
+}

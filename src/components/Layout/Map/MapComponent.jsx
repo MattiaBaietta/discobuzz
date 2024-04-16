@@ -70,7 +70,7 @@ function MapComponent({ initialLatitude, initialLongitude, locations,isEventSave
       <MapContainer
         center={[latitude, longitude]}
         zoom={13}
-        style={{  height: '500px' }}
+        style={{  height: '500px'}}
         ref={mapElement}
       >
         <SearchLocation provider={new OpenStreetMapProvider({
@@ -88,7 +88,7 @@ function MapComponent({ initialLatitude, initialLongitude, locations,isEventSave
         {locations && locations.map((location, index) => {
            
           return (
-
+              
             <Marker key={index} position={[parseFloat(location.latitudine).toFixed(4), parseFloat(location.longitudine).toFixed(4)]} icon={customIcon}>
               <Popup>{location.nome}</Popup>
             </Marker>
