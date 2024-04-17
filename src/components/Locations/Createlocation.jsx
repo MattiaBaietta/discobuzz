@@ -66,8 +66,8 @@ const Createlocation = (props) => {
                 
             </Modal.Body>
             <Modal.Footer className='bgmodal'>
-                <button className="  btn " Click={props.close}>Chiudi</button>
-                <button  className="  btn " onClick={handleSubmit}>Salva Location</button>
+                <button className="btn" onClick={props.close}>Chiudi</button>
+                <button  className="btn" onClick={handleSubmit}>Salva Location</button>
             </Modal.Footer>
         </Modal>
     );

@@ -17,3 +17,28 @@
 .eventicard{
     border: #d5c28f 2px solid;;
 }
+.myeventscard{
+    border-bottom: #d5c28f 2px solid;
+    padding-bottom: 20px!important;
+    padding-top: 20px!important;
+}
+
+.bgmyevents{
+    background-color: transparent;
+}
+.bgmyevents:hover svg{
+    color:#d5c28f;
+}
+.eventilocation{
+    border-bottom: #d5c28f 2px solid;
+    
+}
+
+.bottoni{
+    font-size: 2em;
+    color:transparent; 
+    cursor: pointer;
+}
+.locationdetails:hover svg{
+    color:#d5c28f;
+}

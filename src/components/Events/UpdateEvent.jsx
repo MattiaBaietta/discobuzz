@@ -12,7 +12,7 @@ function UpdateEvent(props) {
     if (props.event) {
       setFormData({
         Id: props.event.id,
-        IdLocation: props.idlocation,
+        IdLocation: props.event.idlocation,
         Nome: props.event.nome,
         Descrizione: props.event.descrizione,
         Data: props.event.data,
@@ -34,7 +34,7 @@ function UpdateEvent(props) {
     ModifyEvent(formData);
     props.onEventSaved();
     setFormData({
-      IdLocation: props.idlocation,
+      IdLocation: props.event.idlocation,
       Nome: '',
       Descrizione: '',
       Data: '',

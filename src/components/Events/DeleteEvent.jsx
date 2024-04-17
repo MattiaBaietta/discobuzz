@@ -9,14 +9,16 @@ function DeleteEvent(props) {
     const [idevento, setidevento] = useState(null); // Inizializza formData a null
     
     useEffect(() => {
-
+      
         if (props.event) {  
+          console.log(props.event.id);
             setidevento(props.event.id);
         }
     },[props.event]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(idevento)
     RemoveEvent(idevento);
     props.onEventSaved();
     props.close();

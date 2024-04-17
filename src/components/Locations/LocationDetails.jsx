@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import { Location } from "./LocationsFunctions";
 import MapComponent from "../Layout/Map/MapComponent";
 import { Button } from 'react-bootstrap';
+import { FaTrash } from "react-icons/fa6";
 import CreateEvent from "../Events/CreateEvent";
 import UpdateEvent from "../Events/UpdateEvent";
 import DeleteEvent from "../Events/DeleteEvent";
 import { EventsListByLocation } from "../Events/EventsFunctions";
 import ModifyLocation from "./ModifyLocation";
+import { RiPencilFill } from "react-icons/ri";
 import { RemoveLocation } from "./LocationsFunctions";
 import { useNavigate } from "react-router-dom";
 import "./LocationDetails.css";
@@ -71,6 +73,7 @@ const LocationDetails = () => {
 
     <div className=" bgbottoni">
       <div className="locationdetails" >
+      
         <div className='d-flex '>
           <img className="w-50 immagini" src={location[0].immagine}></img>
           <div className="coloretext p-5 w-50 d-flex flex-column justify-content-between align-items-center">
@@ -78,10 +81,14 @@ const LocationDetails = () => {
               <p style={{ fontSize: "2em", fontWeight: "bold" }}>Nome: {location[0].nome}</p>
               <p>Indirizzo: {location[0].indirizzo}</p>
             </div>
-            <div className="d-flex">
-              <button className="px-2 btn" onClick={handleShowModify}>Modifica</button>
-              <button className=" btn" onClick={handleRemove}>Elimina location</button>
+            <div className="d-flex align-self-end">
+              {/* <button className="px-2 btn mx-2" onClick={handleShowModify}>Modifica location</button>
+              <button className=" btn" onClick={handleRemove}>Elimina location</button> */}
+              <RiPencilFill onClick={handleShowModify} className="mx-2 bottoni"/>
+              <FaTrash onClick={handleRemove} className="bottoni "/>
+              
             </div>
+            
           </div>
           <ModifyLocation
 
@@ -97,7 +104,7 @@ const LocationDetails = () => {
             onEventSaved={handleEventSaved}
           />
         </div>
-
+        
       </div>
 
       <MapComponent
@@ -111,7 +118,10 @@ const LocationDetails = () => {
 
 
       <div className="coloretext eventidet">
-      <h2 className="py-5">Eventi Programmati:</h2>
+      <h2 className="py-5">Eventi Programmati:
+            
+      </h2>
+      <button className="btn my-2" onClick={handleShow}>Aggiungi nuovo evento</button>
         <div className='d-flex'>
         
           <div className="row m-0 ">
@@ -153,10 +163,10 @@ const LocationDetails = () => {
                   </div>
               </Card>
             ))}
-            <button className="btn" onClick={handleShow}>Crea nuovo evento</button>
+            
           </div>
           <DeleteEvent show={showdelete} close={handleCloseDelete} onEventSaved={handleEventSaved} event={selectedEvent} />
-          <UpdateEvent show={showupdate} close={handleCloseUpdate} onEventSaved={handleEventSaved} idlocation={id} event={selectedEvent} />
+          <UpdateEvent show={showupdate} close={handleCloseUpdate} onEventSaved={handleEventSaved} event={selectedEvent} />
         </div>
       </div>
     </div>

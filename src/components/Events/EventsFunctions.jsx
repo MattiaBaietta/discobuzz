@@ -98,10 +98,11 @@ export async function RemoveEvent(id){
                 },
             }
         );
-        if (!response.ok) {
-            throw new Error(response.status);
-        }
+        
         const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
         console.log(data.message)
     }
     catch(error){
