@@ -7,6 +7,8 @@ import Box from "@mui/material/Box";
 import MapComponent from "../Layout/Map/MapComponent";
 import { EventListByRange } from "./EventsFunctions";
 import { set } from "ol/transform";
+import { FaCartPlus } from "react-icons/fa";
+import "./EventsUser.css"
 
 const EventUser = () => {
   const [value, setValue] = useState(20);
@@ -16,7 +18,7 @@ const EventUser = () => {
   const [Search, setSearch] = useState(false);
   const [idLocationNavigationArray, setIdLocationNavigationArray] = useState([]);
   const [quantities, setQuantities] = useState({});
-  
+
 
   const geo = useSelector((state) => state.geo);
   let locationtosend = {
@@ -54,19 +56,17 @@ const EventUser = () => {
     setQuantities(newQuantities);
   };
 
-  const handleChange = (event,newValue) => {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const addToCart = (eventId) => {
-    let quantity=0;
-    if(quantities[eventId] === undefined )
-    {
-        quantity=1;
+    let quantity = 0;
+    if (quantities[eventId] === undefined) {
+      quantity = 1;
     }
-    else 
-    {
-        quantity = quantities[eventId];
+    else {
+      quantity = quantities[eventId];
     }
     console.log(quantity)
     if (quantity && quantity > 0) {
@@ -81,43 +81,75 @@ const EventUser = () => {
   };
 
   return (
-    <>
-      <Box sx={{ width: 300 }}>
-        <h1>Eventi</h1>
-        <Slider
-          value={value}
-          onChange={handleChange}
-          aria-label="Slider"
-          valueLabelDisplay="auto"
-          min={0}
-          max={100}
-        />
-      </Box>
-      <MapComponent locations={idLocationNavigationArray} />
-      <Button onClick={handleSubmit}>Cerca Eventi intorno a te</Button>
+    <div className="coloretext">
+      
+      <div className=" pdg eventilocation"> 
+        <h1>Cerca eventi intorno a te</h1>
+        <div className="d-flex py-4 bgbottoni justify-content-center ">
+          <Box  sx={{ width: 300 }}>
+            
+            <Slider
+              value={value}
+              onChange={handleChange}
+              aria-label="Slider"
+              valueLabelDisplay="auto"
+              min={20}
+              max={100}
+              valueLabelFormat={(value) => `${value} km`}
+            />
+          </Box>
+          <button className="mx-4 btn " onClick={handleSubmit}>Cerca</button>
+        </div>
+      </div>
+      <div className="d-flex pt-4 eventilocation">
+        <div className="w-50 ">
+          {events &&
+            events.map((event, index) => {
+              return (
+                <div className="row  eventilocation">
+                  <form className="" key={index} onSubmit={(e) => e.preventDefault()}>
+                    <div className="d-flex">
+                      <img className="w-25" src={event.immagine}></img>
+                      <div className="px-3 d-flex flex-column w-75">
+                        <div className="d-flex justify-content-between">
+                          <p>Nome:</p>
+                          <p>{event.nome}</p>
+                        </div>
+                        <div className="d-flex justify-content-between">
+                          <p>Data:</p>
+                          <p>{event.data.split('T')[0]}</p>
+                        </div>
+                        <div className="d-flex justify-content-between">
+                          <p>Ora:</p>
+                          <p>{event.data.split('T')[1]}</p>
+                        </div>
+                        <div className="d-flex justify-content-between">
+                          <p>Prezzo Biglietto:</p>
+                          <p>{event.prezzo}€</p>
+                        </div>
+                        <div className=" align-self-end">
+                          <input className="inputtext rounded " type="number" min="1" value={quantities[event.id] || 1} onChange={(e) => handleQuantityChange(e, event.id)} />
 
-      {events &&
-        events.map((event, index) => {
-          return (
-            <form key={index} onSubmit={(e) => e.preventDefault()}>
-              <div>
-                <label>Nome:{event.nome}</label>
-                <label>Descrizione:{event.descrizione}</label>
-                <label>Data:{event.data}</label>
-                <label>Prezzo Biglietto:{event.prezzo}</label>
-                <label>Quantità:</label>
-                <input type="number" min="1" value={quantities[event.id] || 1} onChange={(e) => handleQuantityChange(e, event.id)}  />
-                <Button
-                  onClick={() => addToCart(event.id)}
-                  type="submit"
-                >
-                  Acquista
-                </Button>
-              </div>
-            </form>
-          );
-        })}
-    </>
+                          <FaCartPlus style={{fontSize:"2em"}} onClick={() => addToCart(event.id)}
+                            type="submit"/>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              );
+            })}
+        </div>
+
+        <div className="w-50">
+          <MapComponent locations={idLocationNavigationArray} />
+        </div>
+      </div>
+      
+
+
+
+    </div>
   );
 };
 export default EventUser;

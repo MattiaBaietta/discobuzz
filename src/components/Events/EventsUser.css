@@ -16,4 +16,13 @@
     color: white;
     transition: width 0.3s ease;
   }
+
+  .search{
+    border: #d5c28f 2px solid;
+    width: 28%;
+  }
+
+  .pdg{
+    padding-top: 20px;
+  }
   
