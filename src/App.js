@@ -16,15 +16,16 @@ import Mytickets from './components/Events/Mytickets';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EventUser from './components/Events/EventsUser';
 import MyEvents from './components/Events/MyEvents';
+import MyProfile from './components/User/MyProfile';
 
 
 function App() {
   
   
   return (
-    <div className='bg'>
+    <div className='bg barra'>
       <Container >
-        <div className="App">
+        <div className="App" >
           <BrowserRouter>
           <MyNavbar/>
           <Routes>
@@ -46,6 +47,9 @@ function App() {
             }></Route>
              <Route path="/Register" element={
               <Register/>
+            }></Route>
+            <Route path="/MyProfile" element={
+              <MyProfile/>
             }></Route>
             <Route path="/Createlocation" element={
               <Createlocation/>

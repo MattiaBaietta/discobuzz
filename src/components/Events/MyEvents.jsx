@@ -48,7 +48,7 @@ const MyEvents = () => {
     <div className="bgbottoni coloretext">
      
       {events && events.map((event) => (
-        <Card key={event.evento.id}  className='myeventscard coloretext bgmyevents d-flex flex-row p-1'>
+        <Card key={event.evento.id}  className=' rounded-0 myeventscard coloretext bgmyevents d-flex flex-row p-1'>
           <div className="col-4">
             <Card.Img className="w-75" src={event.evento.immagine} />
           </div>

@@ -1,0 +1,12 @@
+
+
+.bordo{
+    border: #d5c28f 2px solid;
+    background-color: rgba(172, 156, 156, 0.5);
+
+}
+
+.bordo p{
+    
+    font-weight: bold;
+}

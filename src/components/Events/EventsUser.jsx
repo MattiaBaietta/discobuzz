@@ -81,9 +81,9 @@ const EventUser = () => {
   };
 
   return (
-    <div className="coloretext">
+    <div className="">
       
-      <div className=" pdg eventilocation"> 
+      <div className=" pdg eventilocation coloretext"> 
         <h1>Cerca eventi intorno a te</h1>
         <div className="d-flex py-4 bgbottoni justify-content-center ">
           <Box  sx={{ width: 300 }}>
@@ -102,7 +102,7 @@ const EventUser = () => {
         </div>
       </div>
       <div className="d-flex pt-4 eventilocation">
-        <div className="w-50 ">
+        <div className="w-50 coloretext">
           {events &&
             events.map((event, index) => {
               return (

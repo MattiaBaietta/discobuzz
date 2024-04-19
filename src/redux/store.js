@@ -3,7 +3,7 @@ import { createSlice,configureStore } from "@reduxjs/toolkit";
 const Slice=createSlice({
     name:'Slice',
     initialState:{
-        value:null,
+        value:[],
         role:null,
         loggato:false,
         coordinate:{},
