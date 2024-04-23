@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap'
 import img2 from './assets/img2.webp'
 import img3 from './assets/img3.jpg'
 import img4 from './assets/img4.jpg'
+import { Link } from 'react-router-dom'
 
 import './Homepage.css'
 const Homepage = () => {
@@ -25,24 +26,30 @@ const Homepage = () => {
                 <h1 className='py-5'>
                     Scopri gli eventi più vicini con un solo click
                 </h1>
-                <div className='eventi   d-flex coloretext align-items-center'>
+                <div className='eventi   d-flex coloretext align-items-center justify-content-between'>
                     <p style={{fontSize:"2em"}} className='w-50 text-center'>
-                        Villa delle Rose Riccione
+                        Villa delle Rose <br></br>Riccione
                     </p>
-                    <img style={{height:"372px"}} src={img2} alt="img2" className='w-50' />
+                    <Link   to="/LocationDetails/55">
+                    <img className='immaginedisco' src={img2}   />
+                    </Link>
                 </div>
-                <div className='eventi2  d-flex coloretext align-items-center'>
+                <div className='eventi2  d-flex coloretext align-items-center justify-content-between '>
 
-                    <img style={{height:"372px"}} src={img3} alt="img3" className='w-50' />
+                    <Link  to="/LocationDetails/53">
+                        <img className='immaginedisco' src={img3}   />
+                        </Link>
                     <p style={{fontSize:"2em"}} className='w-50 text-center'>
                         Baia Imperiale <br></br>Gabicce
                     </p>
                 </div>
-                <div className='eventi2  d-flex coloretext align-items-center'>
-                    <p style={{fontSize:"2em"}} className='w-50  text-center'>
+                <div className='eventi2  d-flex coloretext align-items-center justify-content-between '>
+                    <p style={{fontSize:"2em"}} className='w-50 text-center'>
                         Pacha <br></br>Ibiza
                     </p>
-                    <img style={{height:"372px"}} src={img4} alt="img2" className='w-50' />
+                    <Link  to="/LocationDetails/54">
+                        <img  className='immaginedisco' src={img4}  />
+                    </Link>
                 </div>
             </div>
         </>

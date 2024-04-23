@@ -23,7 +23,7 @@ function App() {
   
   
   return (
-    <div className='bg barra'>
+    <div style={{minHeight:"95vh"}} className='bg barra'>
       <Container >
         <div className="App" >
           <BrowserRouter>

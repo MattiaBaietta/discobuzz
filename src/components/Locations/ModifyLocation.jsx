@@ -8,7 +8,7 @@ import "./Createlocation.css"
 
 
 const ModifyLocation = (props) => {
-  const user = parseInt(useSelector(state => state.value));
+  const user = useSelector(state => state.value.userId);
   const location = useSelector(state => state.coordinate);
   let locationtosend = {
     x: props.initialLongitude,
@@ -49,7 +49,7 @@ const ModifyLocation = (props) => {
   return (
 
     <>
-      <Modal className='bgsfondo bgbottoni' show={props.show} onHide={props.close}>
+      <Modal className='bgsfondo bgbottoni  modal-lg' show={props.show} onHide={props.close}>
       <Modal.Header className='bgmodal coloretext' closeButton>
           <Modal.Title className='fs-3'>Modifica location</Modal.Title>
         </Modal.Header>

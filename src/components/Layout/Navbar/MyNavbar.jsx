@@ -24,6 +24,7 @@ const MyNavbar = () => {
     const dispatch = useDispatch();
     const [expanded, setExpanded] = useState(false);
     var isLoggedIn = useSelector(state => state.loggato);
+
     GetUserDetails();
     var role = useSelector(state => state.role);
 
@@ -59,6 +60,7 @@ const MyNavbar = () => {
         if (a != null) {
             dispatch(islogged(true));
             navigate('/');
+            window.location.reload()
         }
     };
     const Register = () => {
@@ -67,7 +69,7 @@ const MyNavbar = () => {
 
 
     return (
-        
+
         <Navbar className='bgcustom p-0' expand="lg" expanded={expanded}>
             {console.log(role)}
             <Navbar.Brand className="py-0">
@@ -78,52 +80,42 @@ const MyNavbar = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={() => setExpanded(!expanded)} />
             <Navbar.Collapse id="responsive-navbar-nav">
                 {console.log(role)}
-                 <Nav className="coloretext me-auto prova">
-                    {role === 2 ? (
+                <Nav className="coloretext me-auto prova">
+                    {role == 1 ? (
                         <>
-
-                            <Link className="nav-link " href="/MyLocations">Le mie Locations</Link>
-                            <Link to='/MyEvents'>I miei Eventi</Link>
-
+                            <Link className="nav-link " to="/MyLocations">Le mie Locations</Link>
+                            <Link className="nav-link " to='/MyEvents'>I miei Eventi</Link>
                         </>
-                    ) :  role === null?(
+                    ) : role === null ? (
                         <>
-
-                            
                             <Link className="nav-link " to='/Events'>Eventi</Link>
                         </>
-                    ):
-                    (
-                        <>
-                        <Link className="nav-link " to='/MyTickets'>I miei Biglietti</Link>
-                            <Link className="nav-link " to='/Events'>Eventi</Link>
-                        </>
-                    )
-                        
+                    ) :
+                        (
+                            <>
+                                <Link className="nav-link " to='/MyTickets'>I miei Biglietti</Link>
+                                <Link className="nav-link " to='/Events'>Eventi</Link>
+                            </>
+                        )
                     }
-                </Nav> 
+                </Nav>
                 {isLoggedIn ? (
                     <>
                         <Link className="nav-link coloretext me-2" to='/Cart'><FaCartShopping style={{ fontSize: "2em" }} /></Link>
-                        <Dropdown >
-                            <Dropdown.Toggle className="bgcustom border-0  " id="dropdown-basic">
+                        <Dropdown className="bgbottone" >
+                            <Dropdown.Toggle className="bgcustom border-0 bgbottone" id="dropdown-basic">
                                 <FaUser style={{ fontSize: "2em" }} className="coloretext" />
                             </Dropdown.Toggle>
-
                             <Dropdown.Menu className='dropdown-menu-end'>
                                 <Dropdown.Item as={Link} to="/MyProfile">Profilo</Dropdown.Item>
-                                {role === 2 ? (
+                                {role == 1 ? (
                                     <>
-                                        <Dropdown.Item as={Link} to="/CreateEvent">Crea Evento</Dropdown.Item>
                                         <Dropdown.Item as={Link} to="/MyLocations">Le mie location</Dropdown.Item>
                                         <Dropdown.Item as={Link} to="/Myevents">I miei eventi</Dropdown.Item>
                                     </>
                                 ) : <>
-
                                     <Dropdown.Item as={Link} to="/Mytickets">I miei biglietti</Dropdown.Item>
                                 </>}
-
-
                                 <Dropdown.Item onClick={Logout}>Logout</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
@@ -132,8 +124,8 @@ const MyNavbar = () => {
                     < >
                         <Link className="nav-link coloretext me-2" to='/Cart'><FaCartShopping style={{ fontSize: "2em" }} /></Link>
                         <Dropdown >
-                            <Dropdown.Toggle className="bgcustom border-0  " id="dropdown-basic">
-                            <FaUser style={{ fontSize: "2em" }} className="coloretext" />
+                            <Dropdown.Toggle className="bgcustom border-0 bgbottone " id="dropdown-basic">
+                                <FaUser style={{ fontSize: "2em" }} className="coloretext" />
                             </Dropdown.Toggle>
                             <Dropdown.Menu className=' coloretext bglogin bgbottoni' onMouseDown={(e) => e.stopPropagation()}>
                                 <form onSubmit={handleSubmit}>
@@ -152,7 +144,6 @@ const MyNavbar = () => {
                 )}
             </Navbar.Collapse>
         </Navbar>
-
     )
 }
 export default MyNavbar

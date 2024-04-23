@@ -5,7 +5,7 @@ import { set } from 'ol/transform';
 import { CheckoutDB } from './CartFunctions';
 import { useSelector } from "react-redux"
 const Cart = () => {
-    const iduser = useSelector(state => state.value);
+    const iduser = useSelector(state => state.value.userId);
     console.log("iduser=" + iduser)
     const [array, setArray] = useState(JSON.parse(localStorage.getItem("Cart")) || []);
 
@@ -76,28 +76,31 @@ const Cart = () => {
                     <div className='w-50 '>
                         {results.map((result, index) => (
 
-                            <div className='row myeventscard ' key={index}>
+                            <div className='bordosotto  py-4 ' key={index}>
 
-                                <img className='w-25' src={result.eventData.evento.immagine}></img>
-
-                                <div className='w-75'>
-                                    <div>
-                                        <div className='d-flex justify-content-between '>
-                                            <p>Nome Evento: {result.eventData.evento.nome}</p>
-                                            <p>Presso: {result.eventData.nomeLocation}</p>
+                                <div className='d-flex'>
+                                    <img className='w-25' src={result.eventData.evento.immagine}></img>
+    
+                                    <div className='w-75 px-2'>
+                                        <div>
+                                            <div className='d-flex justify-content-between '>
+                                                <p>Nome Evento: {result.eventData.evento.nome}</p>
+                                                <p>Presso: {result.eventData.nomeLocation}</p>
+                                            </div>
+                                            <div className='d-flex justify-content-between'>
+                                                <p>Data:</p>
+                                                <p>{result.eventData.evento.data.split('T')[0]}</p>
+                                            </div>
+                                            <div className='d-flex justify-content-between'>
+                                                <p>Numero Biglietti: {result.count} </p>
+    
+                                                <p>Prezzo Totale: {result.count * result.eventData.evento.prezzo}</p>
+                                            </div>
+                                            <button className='btn mx-3' onClick={() => handleModify(result.eventData.evento.id)}>Rimuovi un biglietto</button>
+                                            <button className='btn' onClick={() => handleRemove(result.eventData.evento.id)}>Rimuovi Articolo</button>
                                         </div>
-                                        <div className='d-flex justify-content-between'>
-                                            <p>Data:</p>
-                                            <p>{result.eventData.evento.data.split('T')[0]}</p>
-                                        </div>
-                                        <div className='d-flex justify-content-between'>
-                                            <p>Numero Biglietti: {result.count} </p>
-
-                                            <p>Prezzo Totale: {result.count * result.eventData.evento.prezzo}</p>
-                                        </div>
-                                    </div>
-                                    <button className='btn mx-3' onClick={() => handleModify(result.eventData.evento.id)}>Rimuovi un biglietto</button>
-                                    <button className='btn' onClick={() => handleRemove(result.eventData.evento.id)}>Rimuovi Articolo</button>
+                                </div>
+                                    
                                 </div>
 
 

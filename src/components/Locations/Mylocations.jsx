@@ -22,7 +22,7 @@ const Mylocations = () => {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const navigate = useNavigate();
-  const user = parseInt(useSelector(state => state.value));
+  const user = useSelector(state => state.value.userId);
   const [locations, setLocations] = useState([]);
 
   useEffect(() => {

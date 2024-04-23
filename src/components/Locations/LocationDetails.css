@@ -33,7 +33,14 @@
     border-bottom: #d5c28f 2px solid;
     
 }
-
+.bottoneeventi{
+    font-size: 2em;
+    cursor: pointer;
+}
+.bottoneeventi:hover{
+    color:#e6dcc3!important;
+    
+}
 .bottoni{
     font-size: 2em;
     color:transparent; 
@@ -41,4 +48,24 @@
 }
 .locationdetails:hover svg{
     color:#d5c28f;
+}
+.carousel-indicators {
+    display: none;
+  }
+  .carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10; 
+}
+
+
+.carousel-control-prev {
+  left: -30px; 
+}
+
+
+.carousel-control-next {
+  right: -30px; 
 }

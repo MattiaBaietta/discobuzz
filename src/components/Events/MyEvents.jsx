@@ -10,7 +10,9 @@ import { RiPencilFill } from "react-icons/ri";
 
 
 const MyEvents = () => {
-  const iduser = useSelector(state => state.value);
+  const iduser = useSelector(state => state.value.userId);
+  console.log(iduser)
+  
   const [events, setEvents] = useState([]);
   const [showupdate, setShowupdate] = useState(false);
   const [showdelete, setShowdelete] = useState(false);
@@ -30,7 +32,8 @@ const MyEvents = () => {
     };
 
     fetchEvents();
-  }, [iduser]);
+    setIsEventSaved(false);
+  }, [iduser,isEventSaved]);
   const handleShowUpdate = (event) => {
     setSelectedEvent(event);
     setShowupdate(true);
@@ -47,57 +50,57 @@ const MyEvents = () => {
   return (
     <div className="bgbottoni coloretext">
      
-      {events && events.map((event) => (
-        <Card key={event.evento.id}  className=' rounded-0 myeventscard coloretext bgmyevents d-flex flex-row p-1'>
-          <div className="col-4">
-            <Card.Img className="w-75" src={event.evento.immagine} />
-          </div>
-         
-          <div className="col-8 ">
-            <Card.Body >
-              <Card.Title><div>Nome Evento: {event.evento.nome}</div>
-                Presso: {event.nomeLocation}
-                </Card.Title>
-              <Card.Text >
-                <div className="d-flex justify-content-between">
-                  <p>Data:</p>
-                  <p>{event.evento.data.split('T')[0]}</p>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <p>Ora:</p>
-                  <p> {event.evento.data.split('T')[1]}</p>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <p>Biglietti disponibili:</p>
-                  <p> {event.evento.bigliettiTotali}</p>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <p>Biglietti venduti:</p>
-                  <p> {event.evento.bigliettiVenduti}</p>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <p>Prezzo:</p>
-                  <p> {event.evento.prezzo} €</p>
-                </div>
-              </Card.Text>
-          
-          {/* <button className="btn " onClick={() => handleShowUpdate(event.evento)} >Modifica Evento</button>
-            <button className="btn" onClick={() => handleShowDelete(event.evento)}> Elimina Evento</button> */}
-            
-              <div className="d-flex justify-content-end">
-                <RiPencilFill onClick={() => handleShowUpdate(event.evento)} className="mx-2 bottoni"/>
-                <FaTrash onClick={() => handleShowDelete(event.evento)} className="bottoni"/>
-              
-              </div>
-            </Card.Body>
+      <div  >
+        {events && events.map((event) => (
+          <Card key={event.evento.id}  className='  rounded-0 myeventscard coloretext bgmyevents d-flex flex-row p-1'>
+            <div className="col-4">
+              <Card.Img className="w-75" src={event.evento.immagine} />
             </div>
-          
-        </Card>
-      ))}
-      <DeleteEvent show={showdelete} close={handleCloseDelete} onEventSaved={handleEventSaved} event={selectedEvent} />
-      <UpdateEvent show={showupdate} close={handleCloseUpdate} onEventSaved={handleEventSaved} event={selectedEvent} />
-    </div>
-
+           
+            <div className="col-6 justify-content-center " >
+              <Card.Body  className="p-0 mx-5">
+                <Card.Title><div>Nome Evento: {event.evento.nome}</div>
+                  Presso: {event.nomeLocation}
+                  </Card.Title>
+                <Card.Text className="  " >
+                  <div className="d-flex fs-5 justify-content-between">
+                    <p>Data:</p>
+                    <p>{event.evento.data.split('T')[0]}</p>
+                  </div>
+                  <div className="d-flex fs-5 justify-content-between">
+                    <p>Ora:</p>
+                    <p> {event.evento.data.split('T')[1]}</p>
+                  </div>
+                  <div className="d-flex  fs-5 justify-content-between">
+                    <p>Biglietti disponibili:</p>
+                    <p> {event.evento.bigliettiTotali}</p>
+                  </div>
+                  <div className="d-flex fs-5 justify-content-between">
+                    <p>Biglietti venduti:</p>
+                    <p> {event.evento.bigliettiVenduti}</p>
+                  </div>
+                  <div className="d-flex fs-5 justify-content-between">
+                    <p>Prezzo:</p>
+                    <p> {event.evento.prezzo} €</p>
+                  </div>
+                </Card.Text>
+                
+              </Card.Body>
+             
+              </div>
+              <div className="col-2 d-flex justify-content-end">
+                  <RiPencilFill style={{fontSize:"2em"}} onClick={() => handleShowUpdate(event.evento)} className="mx-2 bottoneeventi"/>
+                  <FaTrash style={{fontSize:"2em"}} onClick={() => handleShowDelete(event.evento)} className="bottoneeventi"/>
+                
+                </div>
+            
+          </Card>
+        ))}
+        <DeleteEvent show={showdelete} close={handleCloseDelete} onEventSaved={handleEventSaved} event={selectedEvent} />
+        <UpdateEvent show={showupdate} close={handleCloseUpdate} onEventSaved={handleEventSaved} event={selectedEvent} />
+      </div>
+  
+      </div>
   );
 };
 

@@ -26,14 +26,14 @@ function DeleteEvent(props) {
 
   return (
     <>
-      <Modal show={props.show} onHide={props.close}>
-        <Modal.Header closeButton>
+      <Modal className='bgsfondo bgbottoni' show={props.show} onHide={props.close}>
+        <Modal.Header className='bgmodal coloretext' closeButton>
           <Modal.Title>Elimina Evento</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-                    <label>Sei sicuro di voler eliminare l'evento?</label> 
+        <Modal.Body className='bgmodal coloretext'>
+                    <p className='  fs-4'>Sei sicuro di voler eliminare l'evento?</p> 
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className='bgmodal'>
           <Button variant="secondary" onClick={props.close}>
             No
           </Button>

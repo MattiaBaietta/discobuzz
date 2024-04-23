@@ -6,7 +6,7 @@ import { RegisterLocation } from './LocationsFunctions';
 import MapComponent from '../Layout/Map/MapComponent';
 import "./Createlocation.css"
 const Createlocation = (props) => {
-    const user = useSelector(state => state.value);
+    const user = useSelector(state => state.value.userId);
     const location = useSelector(state => state.coordinate);
     const [Nome, setNome] = useState('');
     const [Url,setUrl]=useState('');
@@ -47,7 +47,7 @@ const Createlocation = (props) => {
     };
 
     return (
-        <Modal className='bgsfondo bgbottoni' show={props.show} onHide={props.close}>
+        <Modal  className='bgsfondo bgbottoni modal-lg' show={props.show} onHide={props.close}>
             <Modal.Header className='bgmodal coloretext' closeButton>
                 <Modal.Title className='fs-3'>Aggiungi nuova location</Modal.Title>
             </Modal.Header>

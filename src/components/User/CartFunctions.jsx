@@ -1,12 +1,13 @@
 
 
 export async function CheckoutDB(utente,evento,quant){
-
+    console.log("utente"+utente)
+    console.log("evento"+evento)
     console.log("num biglietti"+quant)
     const text={
-        IdUtente:parseInt(utente),
-        IdEvento:evento,
-        Entrato:false,
+        idUtente:parseInt(utente),
+        idEvento:evento,
+        entrato:false,
     }
     console.log(text)
     try {

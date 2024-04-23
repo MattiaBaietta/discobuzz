@@ -44,7 +44,7 @@ function CreateEvent(props) {
 
   return (
     <>
-      <Modal className='bgsfondo bgbottoni' show={props.show} onHide={props.close}>
+      <Modal className='bgsfondo bgbottoni modal-lg' show={props.show} onHide={props.close}>
         <form onSubmit={handleSubmit}>
           <Modal.Header className='bgmodal coloretext' closeButton>
             <Modal.Title className='fs-3'>Aggiungi nuovo evento</Modal.Title>

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
@@ -9,6 +8,7 @@ import { EventListByRange } from "./EventsFunctions";
 import { set } from "ol/transform";
 import { FaCartPlus } from "react-icons/fa";
 import "./EventsUser.css"
+import { Card, Carousel } from "react-bootstrap";
 
 const EventUser = () => {
   const [value, setValue] = useState(20);
@@ -29,7 +29,6 @@ const EventUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(!Search);
-    console.log("search state" + Search);
   };
 
 
@@ -43,7 +42,13 @@ const EventUser = () => {
       range: value,
     };
     EventListByRange(formToSend).then((data) => {
-      setEvents(data);
+      const futureEvents = data.filter(event => {
+        const eventDate = new Date(event.data.split('T')[0]);
+        const currentDate = new Date();
+        return eventDate >= currentDate;
+      });
+
+      setEvents(futureEvents);
       const idLocationNavArray = data.map(
         (event) => event.idLocationNavigation
       );
@@ -68,7 +73,6 @@ const EventUser = () => {
     else {
       quantity = quantities[eventId];
     }
-    console.log(quantity)
     if (quantity && quantity > 0) {
       const cart = localStorage.getItem("Cart");
       const cartArray = cart ? JSON.parse(cart) : [];
@@ -82,12 +86,10 @@ const EventUser = () => {
 
   return (
     <div className="">
-      
-      <div className=" pdg eventilocation coloretext"> 
+      <div className="pdg eventilocation coloretext">
         <h1>Cerca eventi intorno a te</h1>
-        <div className="d-flex py-4 bgbottoni justify-content-center ">
-          <Box  sx={{ width: 300 }}>
-            
+        <div className="d-flex py-4 bgbottoni justify-content-center">
+          <Box sx={{ width: 300 }}>
             <Slider
               value={value}
               onChange={handleChange}
@@ -98,58 +100,115 @@ const EventUser = () => {
               valueLabelFormat={(value) => `${value} km`}
             />
           </Box>
-          <button className="mx-4 btn " onClick={handleSubmit}>Cerca</button>
+          <button className="mx-4 btn" onClick={handleSubmit}>Cerca</button>
         </div>
       </div>
-      <div className="d-flex pt-4 eventilocation">
-        <div className="w-50 coloretext">
-          {events &&
+      <div className="mt-5">
+        <MapComponent locations={idLocationNavigationArray} />
+      </div>
+      <div className="eventilocation">
+        <div className="coloretext row">
+          {events && events.length > 4 ? (
+            <Carousel>
+              {events.reduce((chunks, event, index) => {
+                if (index % 4 === 0) {
+                  chunks.push([]);
+                }
+                chunks[chunks.length - 1].push(event);
+                return chunks;
+              }, []).map((pageEvents, pageIndex) => (
+                <Carousel.Item key={pageIndex}>
+                  <div className="row">
+                    {pageEvents.map((event, index) => {
+                      const eventDate = new Date(event.data.split('T')[0]);
+                      const currentDate = new Date();
+                      const isEventPassed = eventDate < currentDate;
+                      if (!isEventPassed) {
+                        return (
+                          <div key={index} className="col-3">
+                            <Card className='eventicard coloretext bgcustom p-1'>
+                              <Card.Img src={event.immagine} />
+                              <Card.Body>
+                                <Card.Title>{event.nome}</Card.Title>
+                                <Card.Text>
+                                  <div className="d-flex justify-content-between">
+                                    <p>Data:</p>
+                                    <p>{new Date(event.data.split('T')[0]).toLocaleDateString('it-IT')}</p>
+                                  </div>
+                                  <div className="d-flex justify-content-between">
+                                    <p>Ora:</p>
+                                    <p>{event.data.split('T')[1]}</p>
+                                  </div>
+                                  <div className="d-flex justify-content-between">
+                                    <p>Prezzo:</p>
+                                    <p>{event.prezzo} €</p>
+                                  </div>
+                                </Card.Text>
+                              </Card.Body>
+                              {event.bigliettiTotali - event.bigliettiVenduti <= 0 ? (
+                                <p className="fw-bold text-center">Biglietti esauriti</p>
+                              ) : (
+                                <div className="align-self-center">
+                                  <input className="inputtext rounded" type="number" min="1" value={quantities[event.id] || 1} onChange={(e) => handleQuantityChange(e, event.id)} />
+                                  <FaCartPlus style={{ fontSize: "2em" }} onClick={() => addToCart(event.id)} type="submit" />
+                                </div>)}
+                            </Card>
+                          </div>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          ) : (
             events.map((event, index) => {
-              return (
-                <div className="row  eventilocation">
-                  <form className="" key={index} onSubmit={(e) => e.preventDefault()}>
-                    <div className="d-flex">
-                      <img className="w-25" src={event.immagine}></img>
-                      <div className="px-3 d-flex flex-column w-75">
-                        <div className="d-flex justify-content-between">
-                          <p>Nome:</p>
-                          <p>{event.nome}</p>
-                        </div>
-                        <div className="d-flex justify-content-between">
-                          <p>Data:</p>
-                          <p>{event.data.split('T')[0]}</p>
-                        </div>
-                        <div className="d-flex justify-content-between">
-                          <p>Ora:</p>
-                          <p>{event.data.split('T')[1]}</p>
-                        </div>
-                        <div className="d-flex justify-content-between">
-                          <p>Prezzo Biglietto:</p>
-                          <p>{event.prezzo}€</p>
-                        </div>
-                        <div className=" align-self-end">
-                          <input className="inputtext rounded " type="number" min="1" value={quantities[event.id] || 1} onChange={(e) => handleQuantityChange(e, event.id)} />
-
-                          <FaCartPlus style={{fontSize:"2em"}} onClick={() => addToCart(event.id)}
-                            type="submit"/>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              );
-            })}
-        </div>
-
-        <div className="w-50">
-          <MapComponent locations={idLocationNavigationArray} />
+              const eventDate = new Date(event.data.split('T')[0]);
+              const currentDate = new Date();
+              const isEventPassed = eventDate < currentDate;
+              if (!isEventPassed) {
+                return (
+                  <div key={index} className="col-3">
+                    <Card className='eventicard coloretext bgcustom p-1'>
+                      <Card.Img src={event.immagine} />
+                      <Card.Body>
+                        <Card.Title>{event.nome}</Card.Title>
+                        <Card.Text>
+                          <div className="d-flex justify-content-between">
+                            <p>Data:</p>
+                            <p>{new Date(event.data.split('T')[0]).toLocaleDateString('it-IT')}</p>
+                          </div>
+                          <div className="d-flex justify-content-between">
+                            <p>Ora:</p>
+                            <p>{event.data.split('T')[1]}</p>
+                          </div>
+                          <div className="d-flex justify-content-between">
+                            <p>Prezzo:</p>
+                            <p>{event.prezzo} €</p>
+                          </div>
+                          {console.log(event)}
+                        </Card.Text>
+                      </Card.Body>
+                      {event.bigliettiTotali - event.bigliettiVenduti <= 0 ? (
+                        <p className="fw-bold text-center">Biglietti esauriti</p>
+                      ) : (
+                        <div className="align-self-center">
+                          <input className="inputtext rounded" type="number" min="1" value={quantities[event.id] || 1} onChange={(e) => handleQuantityChange(e, event.id)} />
+                          <FaCartPlus style={{ fontSize: "2em" }} onClick={() => addToCart(event.id)} type="submit" />
+                        </div>)}
+                    </Card>
+                  </div>
+                );
+              }
+              return null;
+            })
+          )}
         </div>
       </div>
-      
-
-
-
     </div>
   );
+
 };
+
 export default EventUser;

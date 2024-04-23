@@ -46,3 +46,7 @@
 .bar{
   overflow: hidden;
 }
+
+.modal-dialog{
+  width: 1000px!important;
+}

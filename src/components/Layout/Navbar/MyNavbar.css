@@ -69,3 +69,8 @@
   background-color: rgb(117, 113, 113);
   padding: 10px;
 }
+
+
+.bgbottone{
+  background-color: transparent!important;
+}

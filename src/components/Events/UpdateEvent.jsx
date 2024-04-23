@@ -10,9 +10,10 @@ function UpdateEvent(props) {
   // Imposta i dati del form solo se props.event è valido
   useEffect(() => {
     if (props.event) {
+      console.log(props.event)
       setFormData({
         Id: props.event.id,
-        IdLocation: props.event.idlocation,
+        IdLocation: props.event.idLocation,
         Nome: props.event.nome,
         Descrizione: props.event.descrizione,
         Data: props.event.data,
@@ -47,7 +48,7 @@ function UpdateEvent(props) {
 
   return (
 
-      <Modal className='bgsfondo bgbottoni' show={props.show} onHide={props.close}>
+      <Modal className='bgsfondo bgbottoni  modal-lg' show={props.show} onHide={props.close}>
         <Modal.Header className='bgmodal coloretext' closeButton>
           <Modal.Title className='fs-3'>Aggiungi nuovo evento</Modal.Title>
         </Modal.Header>

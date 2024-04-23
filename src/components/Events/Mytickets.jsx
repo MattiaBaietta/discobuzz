@@ -126,14 +126,15 @@ const Mytickets = () => {
     return (
         <div className="coloretext bgbottoni">
             <h1 className="eventilocation">I Miei Biglietti</h1>
-            <div  className='eventilocation'style={{minHeight:"80vh"}} >
+            <div >
             {events.length ===0 ? (
                 <h1  >Nessun biglietto acquistato</h1>
             ) : (
                 events.map((event, index) => (
                     <div className="row eventilocation" key={event.id}>
                         <img className="col-3" src={event.immagine} alt={`Evento ${index + 1}`} />
-                        <div className="col-9">
+
+                        <div className="col-7 mx-5 w-50 justify-content-center align-self-center" >
                             <div className="d-flex justify-content-between">
                                 <p>Nome location:</p>
                                 <p>{event.nomeLocation}</p>
@@ -154,7 +155,10 @@ const Mytickets = () => {
                                 <p>Nome evento:</p>
                                 <p>{event.nomeEvento}</p>
                             </div>
-                            <QRCode id={`qrCode${event.id}`} value={event.codBiglietto} style={{ display: 'none' }} />
+                            
+                        </div>
+                        <div className='col-2 align-self-end'>
+                        <QRCode id={`qrCode${event.id}`} value={event.codBiglietto} style={{ display: 'none' }} />
                             <button className="btn" onClick={() => generatePDF(event)}>Stampa biglietto</button>
                         </div>
                     </div>
