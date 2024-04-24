@@ -4,6 +4,9 @@ import { EventList } from '../Events/EventsFunctions';
 import { set } from 'ol/transform';
 import { CheckoutDB } from './CartFunctions';
 import { useSelector } from "react-redux"
+import { toast } from 'react-toastify';
+
+
 const Cart = () => {
     const iduser = useSelector(state => state.value.userId);
     console.log("iduser=" + iduser)
@@ -33,19 +36,21 @@ const Cart = () => {
         let newArray = array.filter(item => item !== id);
         localStorage.setItem("Cart", JSON.stringify(newArray));
         setArray(newArray);
+        toast.success("Articolo rimosso dal carrello")
 
     }
     const handleModify = (id) => {
-        let removed = false; // Flag per tracciare se abbiamo già rimosso un elemento
+        let removed = false; 
         let newArray = array.filter(item => {
             if (!removed && item === id) {
-                removed = true; // Imposta il flag su true per indicare che abbiamo già rimosso un elemento
-                return false; // Non includere questo elemento nell'array risultante
+                removed = true; 
+                return false; 
             }
-            return true; // Mantieni gli altri elementi nell'array risultante
+            return true; 
         });
         localStorage.setItem("Cart", JSON.stringify(newArray));
         setArray(newArray);
+        toast.success("Biglietto rimosso dal carrello")
     }
     const handleempty = () => {
         localStorage.removeItem("Cart");
@@ -59,6 +64,7 @@ const Cart = () => {
             }));
             localStorage.removeItem("Cart");
             setArray([]);
+            toast.success("Acquisto completato con successo!")
         } catch (error) {
             console.error("Errore durante il checkout:", error);
         }

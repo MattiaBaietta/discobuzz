@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { UpdateLocation } from "./LocationsFunctions";
 import "./Createlocation.css"
+import { ToastContainer, toast } from "react-toastify";
 
 
 const ModifyLocation = (props) => {
@@ -33,6 +34,7 @@ const ModifyLocation = (props) => {
       id: props.id,
     };
     UpdateLocation(formToSend);
+    toast.success('Location modificata con successo');
     props.onEventSaved();
     props.close();
   }
@@ -49,6 +51,7 @@ const ModifyLocation = (props) => {
   return (
 
     <>
+
       <Modal className='bgsfondo bgbottoni  modal-lg' show={props.show} onHide={props.close}>
       <Modal.Header className='bgmodal coloretext' closeButton>
           <Modal.Title className='fs-3'>Modifica location</Modal.Title>

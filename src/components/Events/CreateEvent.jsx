@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { RegisterEvent } from './EventsFunctions';
 import "../Locations/Createlocation.css"
+import { toast } from 'react-toastify';
 
 function CreateEvent(props) {
   const [formData, setFormData] = useState({
@@ -35,8 +36,10 @@ function CreateEvent(props) {
         Immagine: '',
       });
       props.onEventSaved();
+      toast.success('Evento aggiunto con successo');
       props.close();
     } catch (error) {
+      toast.error('Errore durante la registrazione dell\'evento');
       console.error('Errore durante la registrazione dell\'evento:', error);
 
     }

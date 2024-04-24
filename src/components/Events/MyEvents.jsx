@@ -7,6 +7,7 @@ import DeleteEvent from "./DeleteEvent";
 import '../Locations/LocationDetails.css'
 import { FaTrash } from "react-icons/fa6";
 import { RiPencilFill } from "react-icons/ri";
+import { ToastContainer } from "react-toastify";
 
 
 const MyEvents = () => {
@@ -49,7 +50,7 @@ const MyEvents = () => {
 
   return (
     <div className="bgbottoni coloretext">
-     
+     <ToastContainer/>
       <div  >
         {events && events.map((event) => (
           <Card key={event.evento.id}  className='  rounded-0 myeventscard coloretext bgmyevents d-flex flex-row p-1'>

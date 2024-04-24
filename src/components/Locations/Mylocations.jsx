@@ -6,7 +6,7 @@ import L from 'leaflet'; // Importa Leaflet
 import Button from 'react-bootstrap/Button';
 import { Marker, Popup } from 'react-leaflet';
 import './Mylocations.css'
-
+import { ToastContainer,toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import Createlocation from './Createlocation';
 import { CiCirclePlus } from "react-icons/ci";
@@ -25,14 +25,17 @@ const Mylocations = () => {
   const user = useSelector(state => state.value.userId);
   const [locations, setLocations] = useState([]);
 
+  
   useEffect(() => {
     OrganizerLocations(user).then((data) => {
       setLocations(data);
     });
     setIsLocationSaved(false);
-  }, [isLocationSaved]);
+    
+    
+  }, [user,isLocationSaved]);
   
-  
+
 
   const LocationDetails=(id)=>{
     navigate(`/LocationDetails/${id}`);
@@ -44,7 +47,7 @@ const Mylocations = () => {
   return (
     <div className='coloretext bgbottoni'>
       <Createlocation handleLocationSaved={handleLocationSaved} show={show} close={handleClose}></Createlocation>
-      
+       {/* <ToastContainer/>  */}
       <div className='start d-flex'>
         <div className=''>
           {locations.map((location, index) => (

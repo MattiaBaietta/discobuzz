@@ -103,7 +103,7 @@ export async function RemoveEvent(id){
         if (!response.ok) {
             throw new Error(data.message);
         }
-        console.log(data.message)
+        return data.message;
     }
     catch(error){
         console.error(`Errore durante la cancellazione dell'evento: ${error.message}`);

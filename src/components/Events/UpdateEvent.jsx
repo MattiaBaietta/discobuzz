@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { ModifyEvent } from './EventsFunctions';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 function UpdateEvent(props) {
 
@@ -26,25 +27,34 @@ function UpdateEvent(props) {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData)
-
   }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
-    ModifyEvent(formData);
-    props.onEventSaved();
-    setFormData({
-      IdLocation: props.event.idlocation,
-      Nome: '',
-      Descrizione: '',
-      Data: '',
-      Prezzo: 0,
-      BigliettiTotali: 0,
-      Immagine: '',
-    });
-    props.close();
-  }
+    console.log(formData);
+
+    ModifyEvent(formData)
+        .then(() => {
+            props.onEventSaved();
+            setFormData({
+                IdLocation: props.event.idlocation,
+                Nome: '',
+                Descrizione: '',
+                Data: '',
+                Prezzo: 0,
+                BigliettiTotali: 0,
+                Immagine: '',
+            });
+            props.close();
+            toast.success('Evento modificato con successo');
+        })
+        .catch(error => {
+            console.error("Si è verificato un errore durante la modifica dell'evento:", error);
+            toast.error('Si è verificato un errore durante la modifica dell\'evento');
+            // Gestisci l'errore qui
+        });
+};
+
 
   return (
 

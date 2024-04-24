@@ -73,7 +73,7 @@ function MapComponent({ initialLatitude, initialLongitude, locations,isEventSave
         style={{  height: '500px'}}
         ref={mapElement}
       >
-        <SearchLocation provider={new OpenStreetMapProvider({
+        <SearchLocation  provider={new OpenStreetMapProvider({
           params: {
             email: 'mattia.baietta89@gmail.com',
             'accept-language': 'it',

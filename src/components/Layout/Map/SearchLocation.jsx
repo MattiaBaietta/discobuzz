@@ -21,18 +21,26 @@ import { getCoordinates } from "../../../redux/store";
     showMarker: false,
   });
   function searchEventHandler(result) {
-    console.log(result.location)
      dispatch(getCoordinates(result.location));
+
       
+  }
+  function clearSearchEventHandler() {
+    dispatch(getCoordinates(null)); // Reset delle coordinate a null
   }
 
   const map = useMap(props);
   useEffect(() => {
-   
     map.addControl(searchControl);
     map.on('geosearch/showlocation', searchEventHandler);
-    return () => map.removeControl(searchControl);
-  });
+    map.on('geosearch/clear', clearSearchEventHandler); // Gestione dell'evento di cancellazione della ricerca
+
+    return () => {
+      map.removeControl(searchControl);
+      map.off('geosearch/showlocation', searchEventHandler); // Rimozione degli eventi quando il componente viene smontato
+      map.off('geosearch/clear', clearSearchEventHandler);
+    };
+  }, [map, searchControl, dispatch]);
 
   return null; 
 }

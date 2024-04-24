@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { getUser } from "../../redux/store";
 
 export async function RegisterSubmit(props) {
-
   const text = {
     username: props.Username,
     password: props.Password,
@@ -15,10 +14,10 @@ export async function RegisterSubmit(props) {
     città: props.Città,
     cap: props.Cap,
     role: props.Role
-  }
+  };
 
   try {
-    console.log(text)
+    console.log(text);
     const response = await fetch(
       'http://localhost:5279/api/User',
       {
@@ -30,17 +29,19 @@ export async function RegisterSubmit(props) {
       }
     );
 
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
     const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Errore durante la registrazione');
+    }
+
     console.log(data.message);
   } catch (error) {
-    console.log(props)
     console.error(`Errore durante la registrazione: ${error.message}`);
-
+    throw error; // Rilancia l'errore per consentire alla funzione chiamante di gestirlo
   }
-};
+}
+
 
 export async function LoginSubmit(props) {
 

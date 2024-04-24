@@ -9,6 +9,7 @@ import { set } from "ol/transform";
 import { FaCartPlus } from "react-icons/fa";
 import "./EventsUser.css"
 import { Card, Carousel } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const EventUser = () => {
   const [value, setValue] = useState(20);
@@ -82,6 +83,7 @@ const EventUser = () => {
       localStorage.setItem("Cart", JSON.stringify(cartArray));
     }
     setQuantities({});
+    toast.success("Evento aggiunto al carrello");
   };
 
   return (
@@ -108,6 +110,7 @@ const EventUser = () => {
       </div>
       <div className="eventilocation">
         <div className="coloretext row">
+          {console.log(events)}
           {events && events.length > 4 ? (
             <Carousel>
               {events.reduce((chunks, event, index) => {
@@ -131,6 +134,10 @@ const EventUser = () => {
                               <Card.Body>
                                 <Card.Title>{event.nome}</Card.Title>
                                 <Card.Text>
+                                <div className="d-flex justify-content-between">
+                                    <p>Presso:</p>
+                                    <p>{event.data.idLocationNavigation.nome}</p>
+                                  </div>
                                   <div className="d-flex justify-content-between">
                                     <p>Data:</p>
                                     <p>{new Date(event.data.split('T')[0]).toLocaleDateString('it-IT')}</p>
@@ -175,6 +182,10 @@ const EventUser = () => {
                       <Card.Body>
                         <Card.Title>{event.nome}</Card.Title>
                         <Card.Text>
+                        <div className="d-flex justify-content-between">
+                                    <p>Presso:</p>
+                                    <p>{event.idLocationNavigation.nome}</p>
+                                  </div>
                           <div className="d-flex justify-content-between">
                             <p>Data:</p>
                             <p>{new Date(event.data.split('T')[0]).toLocaleDateString('it-IT')}</p>

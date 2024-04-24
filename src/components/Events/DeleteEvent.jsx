@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { RemoveEvent } from './EventsFunctions';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 function DeleteEvent(props) {
 
@@ -16,13 +17,31 @@ function DeleteEvent(props) {
         }
     },[props.event]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(idevento)
-    RemoveEvent(idevento);
-    props.onEventSaved();
-    props.close();
-  }
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(idevento);
+  
+      RemoveEvent(idevento)
+          .then(response => {
+            console.log(response)
+
+              if (response=="Evento rimosso con successo") {
+                  toast.success('Evento eliminato con successo');
+                  props.onEventSaved();
+                  props.close();
+              } else {
+                  toast.error('Evento non eliminabile: biglietti già venduti');
+                  props.close();
+              }
+          })
+          .catch(error => {
+
+              console.error('Si è verificato un errore:', error);
+              toast.error('Si è verificato un errore durante la rimozione dell\'evento');
+          });
+  };
+  
+  
 
   return (
     <>

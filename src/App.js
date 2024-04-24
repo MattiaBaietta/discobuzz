@@ -17,14 +17,17 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import EventUser from './components/Events/EventsUser';
 import MyEvents from './components/Events/MyEvents';
 import MyProfile from './components/User/MyProfile';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
   
   
   return (
-    <div style={{minHeight:"95vh"}} className='bg barra'>
+    <div style={{minHeight:"100vh"}} className='bg barra'>
       <Container >
+      <ToastContainer/>
         <div className="App" >
           <BrowserRouter>
           <MyNavbar/>

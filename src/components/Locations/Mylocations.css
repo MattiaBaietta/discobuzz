@@ -7,6 +7,7 @@
 .bgbottoni button{
     background-color: #d5c28f;
 }
+
 .bgbottoni button:hover{
     background-color: #eee6d0;
     color: black;

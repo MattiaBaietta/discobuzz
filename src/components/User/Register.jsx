@@ -2,11 +2,13 @@ import { Button } from "react-bootstrap"
 import { RegisterSubmit } from "./UserFunctions"
 import { useState } from "react";
 import './User.css'
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 
 const Register = () => {
-
+    const navigate=useNavigate();
     const [formData, setFormData] = useState({
         Username: '',
         Password: '',
@@ -24,14 +26,22 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData)
-        const formDataToSend = {
-            ...formData
-        };
-        RegisterSubmit(formDataToSend); // Chiamata alla funzione di registrazione con i dati del modulo
-
+        console.log(formData);
+    
+        const formDataToSend = { ...formData };
+    
+        RegisterSubmit(formDataToSend)
+            .then(() => {
+                toast.success('Registrazione avvenuta con successo! Si prega di effettuare il login.');
+                console.log("Registrazione avvenuta con successo!");
+                navigate('/');
+            })
+            .catch(error => {
+                toast.warning(`Si è verificato un errore durante la registrazione: ${error.message}`);
+                console.error("Si è verificato un errore durante la registrazione:", error);
+            });
     };
-
+    
     return (
         <div className="d-flex justify-content-center">
 
