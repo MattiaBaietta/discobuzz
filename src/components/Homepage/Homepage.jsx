@@ -26,28 +26,29 @@ const Homepage = () => {
                 <h1 className='py-5'>
                     Scopri gli eventi più vicini con un solo click
                 </h1>
-                <div className='eventi   d-flex coloretext align-items-center justify-content-between'>
-                    <p style={{fontSize:"2em"}} className='w-50 text-center'>
+                <div className='eventi  row coloretext align-items-center justify-content-between'>
+                    <p  className='col-lg-6 testoeventi col-sm text-center'>
                         Villa delle Rose <br></br>Riccione
                     </p>
-                    <Link   to="/LocationDetails/55">
-                    <img className='immaginedisco' src={img2}   />
+                    <Link className='col-lg-6 col-sm-12'  to="/LocationDetails/55">
+                    <img className='immaginedisco ' src={img2}   />
                     </Link>
                 </div>
-                <div className='eventi2  d-flex coloretext align-items-center justify-content-between '>
-
-                    <Link  to="/LocationDetails/53">
-                        <img className='immaginedisco' src={img3}   />
-                        </Link>
-                    <p style={{fontSize:"2em"}} className='w-50 text-center'>
+                <div className='eventi2 row coloretext align-items-center justify-content-between'>
+                    
+                <p  className='testoeventi col-lg-6  col-sm text-center'>
                         Baia Imperiale <br></br>Gabicce
                     </p>
+                    <Link className='col-lg-6 col-sm-12'  to="/LocationDetails/53">
+                        <img className='immaginedisco' src={img3}   />
+                        </Link>
+                    
                 </div>
-                <div className='eventi2  d-flex coloretext align-items-center justify-content-between '>
-                    <p style={{fontSize:"2em"}} className='w-50 text-center'>
+                <div className='eventi2 row coloretext align-items-center justify-content-between'>
+                    <p  className='col-lg-6 testoeventi  col-sm text-center'>
                         Pacha <br></br>Ibiza
                     </p>
-                    <Link  to="/LocationDetails/54">
+                    <Link className='col-lg-6 col-sm-12' to="/LocationDetails/54">
                         <img  className='immaginedisco' src={img4}  />
                     </Link>
                 </div>

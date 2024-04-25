@@ -26,3 +26,7 @@
     width: 558px;
     height: 350px;
 }
+.modal-mobile {
+    max-width: 90%;
+    margin: auto;
+  }

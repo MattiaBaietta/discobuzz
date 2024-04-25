@@ -52,7 +52,7 @@ const ModifyLocation = (props) => {
 
     <>
 
-      <Modal className='bgsfondo bgbottoni  modal-lg' show={props.show} onHide={props.close}>
+      <Modal className='bgsfondo bgbottoni  modal-lg ' show={props.show} onHide={props.close}>
       <Modal.Header className='bgmodal coloretext' closeButton>
           <Modal.Title className='fs-3'>Modifica location</Modal.Title>
         </Modal.Header>
@@ -66,7 +66,7 @@ const ModifyLocation = (props) => {
             <input className='inputtext rounded-3 w-50' type="text" name="Url" value={Url} onChange={handleChange} />
           </div>
 
-          <MapComponent locations={props.location} initialLatitude={props.initialLatitude} initialLongitude={props.initialLongitude} />
+          <MapComponent  locations={props.location} initialLatitude={props.initialLatitude} initialLongitude={props.initialLongitude} />
         </Modal.Body>
         <Modal.Footer className='bgmodal'>
           <button className="  btn " variant="secondary" onClick={props.close}>

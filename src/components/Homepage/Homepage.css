@@ -19,8 +19,11 @@
     
 }
 
+.immaginedisco{
 
-
+    height: 372px;
+    width:648px;
+}
 .eventi{
     padding-bottom: 48px;
     padding-top: 48px;
@@ -38,9 +41,45 @@
     padding-right: 0px!important;   
     overflow: auto!important;
 }
-
-.immaginedisco{
-
-    height: 372px;
-    width:648px;
+.testoeventi{
+    font-size: 2em;
 }
+
+@media only screen and (max-width: 400px){
+    .homepage{
+        font-size: 2.5em;
+    }
+    .homepage p{
+        margin-bottom: 0px;
+    }
+    .imgback{
+        height: 35vh;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .immaginedisco{
+        height: 200px!important;
+        width: 350px!important;
+    }
+    .testoeventi{
+        font-size: 1.5em;
+    }
+    .immagini{
+        height: 200px!important;
+        width: 350px!important;
+    }
+    .locationdetails{
+        
+        padding-bottom: 10px!important;
+    }
+    .modal-content{
+        width: 38%!important;
+        margin-top: 150px!important;
+    }
+    
+    .mappamodale{
+        height:300px!important;
+    }
+}
+
+

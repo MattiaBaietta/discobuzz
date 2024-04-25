@@ -71,6 +71,7 @@ function MapComponent({ initialLatitude, initialLongitude, locations,isEventSave
         center={[latitude, longitude]}
         zoom={13}
         style={{  height: '500px'}}
+        className='mappamodale'
         ref={mapElement}
       >
         <SearchLocation  provider={new OpenStreetMapProvider({

@@ -31,10 +31,23 @@ const Mylocations = () => {
       setLocations(data);
     });
     setIsLocationSaved(false);
-    
-    
+    console.log("useeffect fatto")
+    if(localStorage.getItem('toastDelete')=='true'){
+    toast.success('Location eliminata con successo');
+    localStorage.setItem('toastDelete',false);
+    }
   }, [user,isLocationSaved]);
-  
+  // useEffect(() => {
+  //   OrganizerLocations(user).then((data) => {
+  //     setLocations(data);
+  //   });
+  //   setIsLocationSaved(false);
+  //   if(localStorage.getItem('toastDelete')=='true'){
+  //     toast.success('Location eliminata con successo');
+  //     localStorage.setItem('toastDelete',false);
+  //   }
+    
+  // }, []);
 
 
   const LocationDetails=(id)=>{
