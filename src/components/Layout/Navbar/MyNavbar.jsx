@@ -89,7 +89,7 @@ const MyNavbar = () => {
 
     return (
         <>
-            <Navbar className='bgcustom p-0 fixed-top' expand="lg" expanded={expanded}>
+            <Navbar className=' bgcustom p-0 fixed-top' expand="lg" expanded={expanded}>
                 <Navbar.Brand className="py-0">
                     <Link to='/' className=''>
                         <img src={logo} style={{ width: "30vh", height: "100%" }} alt="" srcSet="" />
@@ -145,7 +145,7 @@ const MyNavbar = () => {
                                 <Dropdown.Toggle className="bgcustom border-0 bgbottone " id="dropdown-basic">
                                     <FaUser style={{ fontSize: "2em" }} className="coloretext" />
                                 </Dropdown.Toggle>
-                                <Dropdown.Menu className=' coloretext bglogin bgbottoni' onMouseDown={(e) => e.stopPropagation()}>
+                                <Dropdown.Menu className=' coloretext bglogin bgbottoni dropdown-menu-end' onMouseDown={(e) => e.stopPropagation()}>
                                     <form >
                                         <div className='d-flex flex-column'>
                                             <label className="mb-2" style={{ fontWeight: "bold", fontSize: "1.2em" }}>Login</label>
