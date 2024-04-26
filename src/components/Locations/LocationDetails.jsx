@@ -18,6 +18,7 @@ import { FaCartPlus } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "./LocationDetails.css";
+import { set } from "ol/transform";
 
 const LocationDetails = () => {
   const [quantities, setQuantities] = useState({});
@@ -93,8 +94,14 @@ const LocationDetails = () => {
     RemoveLocation(id)
       .then(() => {
         localStorage.setItem("toastDelete", "true");
-        navigate('/MyLocations');
-        setIsEventSaved(true);
+        toast.success("Location rimossa con successo!");
+        setTimeout(() => {
+          localStorage.removeItem("toastDelete");
+          setIsEventSaved(true);
+          navigate('/MyLocations');
+        }, 2500);
+        
+        
       })
       .catch(error => {
         toast.error("Si è verificato un errore durante la rimozione della location!");

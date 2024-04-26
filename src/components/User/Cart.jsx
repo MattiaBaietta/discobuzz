@@ -76,11 +76,11 @@ const Cart = () => {
             <div className='eventilocation'>
                 <h1>Carrello</h1>
                 </div>
-           
             <div>
                 <div className='row eventilocation '>
                     <div className='col-lg-6 '>
-                        {results.map((result, index) => (
+                        {results.sort((a, b) => a.eventData.evento.nome.localeCompare(b.eventData.evento.nome)) // Ordina gli elementi in base al nome
+                                .map((result, index) => (
                             <div className='bordosotto  py-4 ' key={index}>
                                 <div className='row'>
                                     <img className='col-lg-3' src={result.eventData.evento.immagine}></img>
@@ -96,7 +96,6 @@ const Cart = () => {
                                             </div>
                                             <div className='d-flex justify-content-between'>
                                                 <p>Numero Biglietti: {result.count} </p>
-    
                                                 <p>Prezzo Totale: {result.count * result.eventData.evento.prezzo}</p>
                                             </div>
                                             <button className='btn mx-3' onClick={() => handleModify(result.eventData.evento.id)}>Rimuovi un biglietto</button>

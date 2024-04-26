@@ -72,8 +72,8 @@ const Register = () => {
                     <div className="d-flex pb-3 justify-content-between">
                         <p className="m-0">Sei un utente o un organizzatore di eventi? </p>
                         <select name="Role" className="inputtext rounded-3" id="" value={formData.Role} onChange={handleChange}>
-                            <option value="1">Utente</option>
-                            <option value="2">Organizzatore</option>
+                            <option value="2">Utente</option>
+                            <option value="1">Organizzatore</option>
                         </select>
                     </div>
                     <button className="btn" type="submit">

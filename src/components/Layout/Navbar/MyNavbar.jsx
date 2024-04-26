@@ -150,7 +150,7 @@ const MyNavbar = () => {
                                         <div className='d-flex flex-column'>
                                             <label className="mb-2" style={{ fontWeight: "bold", fontSize: "1.2em" }}>Login</label>
                                             <input className="inputtext rounded-3" type="text" name="Username" id="" placeholder="Username" value={formData.Username} onChange={handleChange} />
-                                            <input className="inputtext rounded-3" type="text" name="Password" id="" placeholder="Password" value={formData.Password} onChange={handleChange} />
+                                            <input className="inputtext rounded-3" type="password" name="Password" id="" placeholder="Password" value={formData.Password} onChange={handleChange} />
                                             <button className="btn my-2" onClick={(Login)} type="submit">Login</button>
                                             <label style={{ fontWeight: "bold", fontSize: "1.2em" }}>Non sei ancora <Link className=" fs-3" to='/Register' >Registrato?</Link> </label>
                                             
