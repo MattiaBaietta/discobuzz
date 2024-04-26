@@ -1,11 +1,10 @@
 
-import { Navbar, Nav, NavDropdown, NavItem, Container } from "react-bootstrap"
+import { Navbar, Nav } from "react-bootstrap"
 import { FaUser } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6"
 import { Link } from "react-router-dom"
 import logo from './assets/logo.png'
 import './MyNavbar.css'
-import Cart from "../../User/Cart"
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux"
@@ -38,7 +37,6 @@ const MyNavbar = () => {
     });
 
     useEffect(() => {
-
         const token = localStorage.getItem('token');
         if (token) {
             dispatch(islogged(true));
@@ -91,13 +89,13 @@ const MyNavbar = () => {
 
     return (
         <>
-            <Navbar className='bgcustom p-0' expand="lg" expanded={expanded}>
+            <Navbar className='bgcustom p-0 fixed-top' expand="lg" expanded={expanded}>
                 <Navbar.Brand className="py-0">
                     <Link to='/' className=''>
                         <img src={logo} style={{ width: "30vh", height: "100%" }} alt="" srcSet="" />
                     </Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={() => setExpanded(!expanded)} />
+                <Navbar.Toggle  aria-controls="responsive-navbar-nav" onClick={() => setExpanded(!expanded)} />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="coloretext me-auto prova">
                         {console.log("il ruolo"+role)}

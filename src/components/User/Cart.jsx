@@ -78,20 +78,17 @@ const Cart = () => {
                 </div>
            
             <div>
-                <div className='d-flex eventilocation '>
-                    <div className='w-50 '>
+                <div className='row eventilocation '>
+                    <div className='col-lg-6 '>
                         {results.map((result, index) => (
-
                             <div className='bordosotto  py-4 ' key={index}>
-
-                                <div className='d-flex'>
-                                    <img className='w-25' src={result.eventData.evento.immagine}></img>
-    
-                                    <div className='w-75 px-2'>
-                                        <div>
+                                <div className='row'>
+                                    <img className='col-lg-3' src={result.eventData.evento.immagine}></img>
+                                    <div className='col-lg-9 px-2'>
+                                        <div className='py-2'>
                                             <div className='d-flex justify-content-between '>
-                                                <p>Nome Evento: {result.eventData.evento.nome}</p>
-                                                <p>Presso: {result.eventData.nomeLocation}</p>
+                                                <p className='fw-bold'>Nome : {result.eventData.evento.nome}</p>
+                                                <p className='fw-bold'>Presso: {result.eventData.nomeLocation}</p>
                                             </div>
                                             <div className='d-flex justify-content-between'>
                                                 <p>Data:</p>
@@ -105,18 +102,12 @@ const Cart = () => {
                                             <button className='btn mx-3' onClick={() => handleModify(result.eventData.evento.id)}>Rimuovi un biglietto</button>
                                             <button className='btn' onClick={() => handleRemove(result.eventData.evento.id)}>Rimuovi Articolo</button>
                                         </div>
+                                </div> 
                                 </div>
-                                    
-                                </div>
-
-
-
                             </div>
-
-
                         ))}
                     </div>
-                    <div className='w-50 pb-4 d-flex flex-column justify-content-end'>
+                    <div className='col-lg-6 pb-4 d-flex flex-column justify-content-end'>
                         <h3>Totale da pagare: {results.reduce((acc, result) => acc + result.count * result.eventData.evento.prezzo, 0)}€</h3>
                         <div className='mt-3'>
                             <button className='btn mx-3' onClick={handleempty}>Svuota carrello</button>
@@ -124,9 +115,7 @@ const Cart = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     );
 }

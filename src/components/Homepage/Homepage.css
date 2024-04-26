@@ -44,6 +44,17 @@
 .testoeventi{
     font-size: 2em;
 }
+.widthadattiva{
+    width: 50%;
+}
+.widthadattiva p{
+    font-size: 1.5em;
+
+}
+.widthadattiva input{
+    font-size: 1.2em;
+
+}
 
 @media only screen and (max-width: 400px){
     .homepage{
@@ -80,6 +91,22 @@
     .mappamodale{
         height:300px!important;
     }
+    .widthadattiva{
+        width: 100%!important;
+    }
+    .widthadattiva p{
+        font-size: 1.2em!important;
+    }
+    .widthadattiva input{
+        font-size: 1em!important;
+    }
+    .carousel-control-next{
+        right: 0px!important;
+    }
+    .carousel-control-prev{
+        left: 0px!important;
+    }
+    
 }
 
 

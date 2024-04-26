@@ -132,32 +132,32 @@ const Mytickets = () => {
             ) : (
                 events.map((event, index) => (
                     <div className="row eventilocation" key={event.id}>
-                        <img className="col-3" src={event.immagine} alt={`Evento ${index + 1}`} />
+                        <img className="col-lg-3" src={event.immagine} alt={`Evento ${index + 1}`} />
 
-                        <div className="col-7 mx-5 w-50 justify-content-center align-self-center" >
+                        <div className="col-lg-7 col  w-50 justify-content-center align-self-center" >
                             <div className="d-flex justify-content-between">
-                                <p>Nome location:</p>
+                                <p className='fw-bold'>Nome location:</p>
                                 <p>{event.nomeLocation}</p>
                             </div>
                             <div className="d-flex justify-content-between">
-                                <p>Data:</p>
+                                <p className='fw-bold'>Data:</p>
                                 <p>{event.data.split('T')[0]}</p>
                             </div>
                             <div className="d-flex justify-content-between">
-                                <p>Ora:</p>
+                                <p className='fw-bold'>Ora:</p>
                                 <p> {event.data.split('T')[1]}</p>
                             </div>
                             <div className="d-flex justify-content-between">
-                                <p>Biglietto numero:</p>
+                                <p className='fw-bold'>Biglietto numero:</p>
                                 <p>{event.codBiglietto}</p>
                             </div>
                             <div className="d-flex justify-content-between">
-                                <p>Nome evento:</p>
+                                <p className='fw-bold'>Nome evento:</p>
                                 <p>{event.nomeEvento}</p>
                             </div>
                             
                         </div>
-                        <div className='col-2 align-self-end'>
+                        <div className='col-lg-2 align-self-end'>
                         <QRCode id={`qrCode${event.id}`} value={event.codBiglietto} style={{ display: 'none' }} />
                             <button className="btn" onClick={() => generatePDF(event)}>Stampa biglietto</button>
                         </div>

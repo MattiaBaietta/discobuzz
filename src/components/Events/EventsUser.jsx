@@ -110,111 +110,123 @@ const EventUser = () => {
       </div>
       <div className="eventilocation">
         <div className="coloretext row">
-          {console.log(events)}
-          {events && events.length > 4 ? (
-            <Carousel>
-              {events.reduce((chunks, event, index) => {
-                if (index % 4 === 0) {
-                  chunks.push([]);
-                }
-                chunks[chunks.length - 1].push(event);
-                return chunks;
-              }, []).map((pageEvents, pageIndex) => (
-                <Carousel.Item key={pageIndex}>
-                  <div className="row">
-                    {pageEvents.map((event, index) => {
-                      const eventDate = new Date(event.data.split('T')[0]);
-                      const currentDate = new Date();
-                      const isEventPassed = eventDate < currentDate;
-                      if (!isEventPassed) {
-                        return (
-                          <div key={index} className="col-3">
-                            <Card className='eventicard coloretext bgcustom p-1'>
-                              <Card.Img src={event.immagine} />
-                              <Card.Body>
-                                <Card.Title>{event.nome}</Card.Title>
-                                <Card.Text>
-                                <div className="d-flex justify-content-between">
-                                    <p>Presso:</p>
-                                    <p>{event.data.idLocationNavigation.nome}</p>
-                                  </div>
-                                  <div className="d-flex justify-content-between">
-                                    <p>Data:</p>
-                                    <p>{new Date(event.data.split('T')[0]).toLocaleDateString('it-IT')}</p>
-                                  </div>
-                                  <div className="d-flex justify-content-between">
-                                    <p>Ora:</p>
-                                    <p>{event.data.split('T')[1]}</p>
-                                  </div>
-                                  <div className="d-flex justify-content-between">
-                                    <p>Prezzo:</p>
-                                    <p>{event.prezzo} €</p>
-                                  </div>
-                                </Card.Text>
-                              </Card.Body>
-                              {event.bigliettiTotali - event.bigliettiVenduti <= 0 ? (
-                                <p className="fw-bold text-center">Biglietti esauriti</p>
-                              ) : (
-                                <div className="align-self-center">
-                                  <input className="inputtext rounded" type="number" min="1" value={quantities[event.id] || 1} onChange={(e) => handleQuantityChange(e, event.id)} />
-                                  <FaCartPlus style={{ fontSize: "2em" }} onClick={() => addToCart(event.id)} type="submit" />
-                                </div>)}
-                            </Card>
-                          </div>
-                        );
-                      }
-                      return null;
-                    })}
-                  </div>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          ) : (
-            events.map((event, index) => {
+          <Carousel
+            indicators={false}
+            prevIcon={<span className="carousel-control-prev-icon" />}
+            nextIcon={<span className="carousel-control-next-icon" />}
+            interval={null} // Disable auto sliding
+            className="d-block d-md-none" // Show only one card on mobile
+          >
+            {events.map((event, index) => {
               const eventDate = new Date(event.data.split('T')[0]);
               const currentDate = new Date();
               const isEventPassed = eventDate < currentDate;
               if (!isEventPassed) {
                 return (
-                  <div key={index} className="col-3">
-                    <Card className='eventicard coloretext bgcustom p-1'>
-                      <Card.Img src={event.immagine} />
-                      <Card.Body>
-                        <Card.Title>{event.nome}</Card.Title>
-                        <Card.Text>
-                        <div className="d-flex justify-content-between">
-                                    <p>Presso:</p>
-                                    <p>{event.idLocationNavigation.nome}</p>
-                                  </div>
-                          <div className="d-flex justify-content-between">
-                            <p>Data:</p>
-                            <p>{new Date(event.data.split('T')[0]).toLocaleDateString('it-IT')}</p>
-                          </div>
-                          <div className="d-flex justify-content-between">
-                            <p>Ora:</p>
-                            <p>{event.data.split('T')[1]}</p>
-                          </div>
-                          <div className="d-flex justify-content-between">
-                            <p>Prezzo:</p>
-                            <p>{event.prezzo} €</p>
-                          </div>
-                          {console.log(event)}
-                        </Card.Text>
-                      </Card.Body>
-                      {event.bigliettiTotali - event.bigliettiVenduti <= 0 ? (
-                        <p className="fw-bold text-center">Biglietti esauriti</p>
-                      ) : (
-                        <div className="align-self-center">
-                          <input className="inputtext rounded" type="number" min="1" value={quantities[event.id] || 1} onChange={(e) => handleQuantityChange(e, event.id)} />
-                          <FaCartPlus style={{ fontSize: "2em" }} onClick={() => addToCart(event.id)} type="submit" />
-                        </div>)}
-                    </Card>
-                  </div>
+                  <Carousel.Item key={index}>
+                    <div className="col-12">
+                      <Card className='eventicard coloretext bgcustom p-1'>
+                        <Card.Img src={event.immagine} />
+                        <Card.Body>
+                          <Card.Title>{event.nome}</Card.Title>
+                          <Card.Text>
+                            <div className="d-flex justify-content-between">
+                              <p>Presso:</p>
+                              <p>{event.idLocationNavigation.nome}</p>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <p>Data:</p>
+                              <p>{new Date(event.data.split('T')[0]).toLocaleDateString('it-IT')}</p>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <p>Ora:</p>
+                              <p>{event.data.split('T')[1]}</p>
+                            </div>
+                            <div className="d-flex justify-content-between">
+                              <p>Prezzo:</p>
+                              <p>{event.prezzo} €</p>
+                            </div>
+                            {console.log(event)}
+                          </Card.Text>
+                        </Card.Body>
+                        {event.bigliettiTotali - event.bigliettiVenduti <= 0 ? (
+                          <p className="fw-bold text-center">Biglietti esauriti</p>
+                        ) : (
+                          <div className="align-self-center">
+                            <input className="inputtext rounded" type="number" min="1" value={quantities[event.id] || 1} onChange={(e) => handleQuantityChange(e, event.id)} />
+                            <FaCartPlus style={{ fontSize: "2em" }} onClick={() => addToCart(event.id)} type="submit" />
+                          </div>)}
+                      </Card>
+                    </div>
+                  </Carousel.Item>
                 );
               }
               return null;
-            })
-          )}
+            })}
+          </Carousel>
+          <Carousel
+            indicators={false}
+            prevIcon={<span className="carousel-control-prev-icon" />}
+            nextIcon={<span className="carousel-control-next-icon" />}
+            interval={null} // Disable auto sliding
+            className="d-none d-md-block" // Show four cards on desktop
+          >
+            {events.reduce((chunks, event, index) => {
+              if (index % 4 === 0) {
+                chunks.push([]);
+              }
+              chunks[chunks.length - 1].push(event);
+              return chunks;
+            }, []).map((pageEvents, pageIndex) => (
+              <Carousel.Item key={pageIndex}>
+                <div className="row">
+                  {pageEvents.map((event, index) => {
+                    const eventDate = new Date(event.data.split('T')[0]);
+                    const currentDate = new Date();
+                    const isEventPassed = eventDate < currentDate;
+                    if (!isEventPassed) {
+                      return (
+                        <div key={index} className="col-3">
+                          <Card className='eventicard coloretext bgcustom p-1'>
+                            <Card.Img src={event.immagine} />
+                            <Card.Body>
+                              <Card.Title>{event.nome}</Card.Title>
+                              <Card.Text>
+                                <div className="d-flex justify-content-between">
+                                  <p>Presso:</p>
+                                  <p>{event.idLocationNavigation.nome}</p>
+                                </div>
+                                <div className="d-flex justify-content-between">
+                                  <p>Data:</p>
+                                  <p>{new Date(event.data.split('T')[0]).toLocaleDateString('it-IT')}</p>
+                                </div>
+                                <div className="d-flex justify-content-between">
+                                  <p>Ora:</p>
+                                  <p>{event.data.split('T')[1]}</p>
+                                </div>
+                                <div className="d-flex justify-content-between">
+                                  <p>Prezzo:</p>
+                                  <p>{event.prezzo} €</p>
+                                </div>
+                              </Card.Text>
+                            </Card.Body>
+                            {event.bigliettiTotali - event.bigliettiVenduti <= 0 ? (
+                              <p className="fw-bold text-center">Biglietti esauriti</p>
+                            ) : (
+                              <div className="align-self-center">
+                                <input className="inputtext rounded" type="number" min="1" value={quantities[event.id] || 1} onChange={(e) => handleQuantityChange(e, event.id)} />
+                                <FaCartPlus style={{ fontSize: "2em" }} onClick={() => addToCart(event.id)} type="submit" />
+                              </div>)}
+                          </Card>
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
+              </Carousel.Item>
+            ))}
+          </Carousel>
         </div>
       </div>
     </div>

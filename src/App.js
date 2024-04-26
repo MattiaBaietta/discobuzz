@@ -26,11 +26,11 @@ function App() {
   
   return (
     <div style={{minHeight:"100vh"}} className='bg barra'>
-      <Container >
+      <Container className='mt-5' >
       <ToastContainer/>
         <div className="App" >
           <BrowserRouter>
-          <MyNavbar/>
+          <MyNavbar />
           <Routes>
             <Route path="/*" element={
               <Homepage/>

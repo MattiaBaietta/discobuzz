@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import MapComponent from '../Layout/Map/MapComponent';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { OrganizerLocations } from './LocationsFunctions';
 import L from 'leaflet'; // Importa Leaflet
-import Button from 'react-bootstrap/Button';
-import { Marker, Popup } from 'react-leaflet';
 import './Mylocations.css'
-import { ToastContainer,toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import Createlocation from './Createlocation';
 import { CiCirclePlus } from "react-icons/ci";
@@ -37,18 +34,6 @@ const Mylocations = () => {
     localStorage.setItem('toastDelete',false);
     }
   }, [user,isLocationSaved]);
-  // useEffect(() => {
-  //   OrganizerLocations(user).then((data) => {
-  //     setLocations(data);
-  //   });
-  //   setIsLocationSaved(false);
-  //   if(localStorage.getItem('toastDelete')=='true'){
-  //     toast.success('Location eliminata con successo');
-  //     localStorage.setItem('toastDelete',false);
-  //   }
-    
-  // }, []);
-
 
   const LocationDetails=(id)=>{
     navigate(`/LocationDetails/${id}`);
@@ -60,28 +45,23 @@ const Mylocations = () => {
   return (
     <div className='coloretext bgbottoni'>
       <Createlocation handleLocationSaved={handleLocationSaved} show={show} close={handleClose}></Createlocation>
-       {/* <ToastContainer/>  */}
       <div className='start d-flex'>
         <div className=''>
           {locations.map((location, index) => (
-            <div key={index} className='eventilocation  d-flex'>
-              <img  className='w-50 immagini' src={location.immagine}></img>
-              <div className='w-50 d-flex flex-column justify-content-between align-items-center p-5'>
+            <div key={index} className='eventilocation  row'>
+              <img className="col-lg col immagini " src={location.immagine} alt="Location"></img>
+              <div className="col-lg col coloretext p-4 d-flex flex-column justify-content-between align-items-center">
                 <div>
                   <p style={{fontSize:"2em",fontWeight:"bold"}}>{location.nome}</p>
                   <p>{location.indirizzo}</p>
                 </div>
- 
                 <button className=" w-50 btn " onClick={()=>LocationDetails(location.id)} >Visualizza Dettagli</button>
               </div>
             </div>
           ))}
         </div>
-      </div>
-          
-        <CiCirclePlus className='addbutton' onClick={handleShow}>Aggiungi Location</CiCirclePlus>
-        
-      
+      </div>   
+      <CiCirclePlus className='addbutton' onClick={handleShow}>Aggiungi Location</CiCirclePlus>   
     </div>
   );
 };
